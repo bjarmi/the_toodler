@@ -2,7 +2,8 @@
 * This module contains interfaces for Redux.
 */
 
-export interface DepartmentAction {
+// Define an interface for department actions.
+export interface IDepartmentAction {
   payload: any,
   type: string
 }
