@@ -7,7 +7,14 @@ import {IDepartmentAction} from "../interfaces";
 import {IBoard} from "../../common/interfaces";
 import {BoardDoesNotExistError, IncorrectActionTypeError} from "../exceptions";
 
-// Define an interface for the boardSlice.
+/**
+ * This interface defines the Board department - a subset of the Redux store.
+ *
+ * @interface IBoardDepartment
+ * @member {Set<IBoard>} boards A set of boards contained within this department.
+ * @member {number} The ID that will be assigned to the next member of the department.
+ * @author Alexander Robertson -> contact-sasha@proton.me
+ */
 interface IBoardDepartment {
   boards: Set<IBoard>,
   next_id: number
@@ -19,12 +26,28 @@ const initialState: IBoardDepartment = {
   next_id: 1
 }
 
-// Create the boardSlice.
+/**
+ * This function creates the boardSlice.
+ *
+ * @property {string} name The name of the slice.
+ * @property {IBoardDepartment} The initial state of this slice.
+ * @property {Object} reducers This object contains all reducers for this slice.
+ * @returns {Slice} A slice object.
+ * @author Alexander Robertson -> contact-sasha@proton.me
+ */
 const boardSlice: Slice = createSlice({
   name: "boards",
   initialState: initialState,
   reducers: {
 
+    /**
+     * This function adds a board to the Board department of the Redux store.
+     *
+     * @param {IBoardDepartment} department The department of the Redux store to modify.
+     * @param {IDepartmentAction} action The action being carried out in order to modify the store.
+     * @throws IncorrectActionTypeError if the provided action type is not "addBoard".
+     * @author Alexander Robertson -> contact-sasha@proton.me
+     */
     addBoard: (department: IBoardDepartment, action: IDepartmentAction): void => {
       // Validate action type.
       if (action.type !== "addBoard")
@@ -32,6 +55,15 @@ const boardSlice: Slice = createSlice({
       department.boards.add(action.payload)
     },
 
+    /**
+     * This function edits a board in the Board department of the Redux store.
+     *
+     * @param {IBoardDepartment} department The department of the Redux store to modify.
+     * @param {IDepartmentAction} action The action being carried out in order to modify the store.
+     * @throws IncorrectActionTypeError If the provided action type is not "editBoard".
+     * @throws BoardDoesNotExistError If the Board provided for editing does not exist within the department.
+     * @author Alexander Robertson -> contact-sasha@proton.me
+     */
     editBoard: (department: IBoardDepartment, action: IDepartmentAction) => {
       // Validate action type.
       if (action.type !== "editBoard")
@@ -51,6 +83,14 @@ const boardSlice: Slice = createSlice({
         throw new BoardDoesNotExistError(action.payload.id)
     },
 
+    /**
+     * This function removes a board from the Board department of the Redux store.
+     * @param {IBoardDepartment} department The department of the Redux store to modify.
+     * @param {IDepartmentAction} action The action being carried out in order to modify the store.
+     * @throws IncorrectActionTypeError If the provided action type is not "removeBoard".
+     * @throws BoardDoesNotExistError If the Board provided for removal does not exist within the department.
+     * @author Alexander Robertson -> contact-sasha@proton.me
+     */
     removeBoard: (department, action) => {
       // Validate action type.
       if (action.type !== "removeBoard")
