@@ -84,7 +84,7 @@ const boardSlice: Slice = createSlice({
     },
 
     /**
-     * This function removes a board in the Board department of the Redux store.
+     * This function removes a board from the Board department of the Redux store.
      * @param {IBoardDepartment} department The department of the Redux store to modify.
      * @param {IDepartmentAction} action The action being carried out in order to modify the store.
      * @throws IncorrectActionTypeError If the provided action type is not "removeBoard".
