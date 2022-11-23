@@ -4,6 +4,7 @@ import { BoardRoute, HomeRoute, ListRoute } from "./src/common/constants";
 import BoardPage from "./src/components/pages/boardPage";
 import HomePage from "./src/components/pages/homePage";
 import ListPage from "./src/components/pages/listPage";
+import { enableMapSet } from "immer";
 
 const Stack = createNativeStackNavigator();
 // Allow Redux store to use immutable objects.
