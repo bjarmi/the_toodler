@@ -6,8 +6,8 @@ import {configureStore, combineReducers, bindActionCreators} from "@reduxjs/tool
 
 // Configure the Redux store.
 export const store = configureStore({
-    // Register reducers.
-    reducer: combineReducers({})
+  // Register reducers.
+  reducer: combineReducers({})
 })
 
 // Export available actions from the store dispatcher.
