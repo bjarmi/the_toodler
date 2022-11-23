@@ -6,6 +6,9 @@ import HomePage from "./src/components/pages/homePage";
 import ListPage from "./src/components/pages/listPage";
 
 const Stack = createNativeStackNavigator();
+// Allow Redux store to use immutable objects.
+// https://immerjs.github.io/immer/complex-objects/
+enableMapSet();
 
 export default function App() {
   return (
