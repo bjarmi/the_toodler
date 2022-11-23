@@ -11,7 +11,7 @@ import {BoardDoesNotExistError, IncorrectActionTypeError} from "../exceptions";
  * This interface defines the Board department - a subset of the Redux store.
  *
  * @interface IBoardDepartment
- * @member {Set<IBoard>} boards A set of the boards contained within this department.
+ * @member {Set<IBoard>} boards A set of boards contained within this department.
  * @member {number} The ID that will be assigned to the next member of the department.
  * @author Alexander Robertson -> contact-sasha@proton.me
  */
