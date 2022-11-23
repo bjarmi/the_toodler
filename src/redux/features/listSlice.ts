@@ -6,7 +6,6 @@ import {createSlice, Slice} from "@reduxjs/toolkit";
 import {IDepartmentAction} from "../interfaces";
 import {IList} from "../../common/interfaces";
 import {ListDoesNotExistError, IncorrectActionTypeError} from "../exceptions";
-import {StyleSheet} from "react-native";
 
 // Define an interface for the listSlice.
 interface IListDepartment {
@@ -44,6 +43,7 @@ const listSlice: Slice = createSlice({
         if (list.id == action.payload.id) {
           listFound = true
           list = action.payload
+          break
         }
 
       // Throw error if the list was not found.
