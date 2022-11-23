@@ -2,12 +2,17 @@
 * This module contains the Redux store.
 * */
 
-import {bindActionCreators, combineReducers, configureStore} from "@reduxjs/toolkit";
+import {bindActionCreators, combineReducers, configureStore, EnhancedStore, Reducer} from "@reduxjs/toolkit";
 import {boardActions, boardReducer, listActions, listReducer, taskActions, taskReducer} from "./features"
 
-// Configure the Redux store.
-export const store = configureStore({
-  // Register reducers.
+/**
+ * This function creates the Redux store.
+ *
+ * @property {Reducer} A combined reducer of all reducers within the store.
+ * @returns {EnhancedStore} A Redux store object.
+ * @author Alexander Robertson -> contact-sasha@proton.me
+ */
+export const store: EnhancedStore = configureStore({
   reducer: combineReducers({
     "boards": boardReducer,
     "lists": listReducer,
@@ -15,7 +20,11 @@ export const store = configureStore({
   })
 })
 
-// Export available actions from the store dispatcher.
+/**
+ * This function exports all the reducer actions from the store action dispatcher.
+ *
+ * @author Alexander Robertson -> contact-sasha@proton.me
+ */
 export const dispatchAction = bindActionCreators({
   ...boardActions,
   ...listActions,

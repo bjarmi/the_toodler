@@ -5,6 +5,11 @@ import boardReducer from "./boardSlice"
 import listReducer from "./listSlice"
 import taskReducer from "./taskSlice"
 
-export {boardActions, boardReducer}
-export {listActions, listReducer}
-export {taskActions, taskReducer}
+export {
+  boardActions,
+  listActions,
+  taskActions,
+  boardReducer,
+  listReducer,
+  taskReducer
+}

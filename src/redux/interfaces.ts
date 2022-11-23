@@ -11,6 +11,6 @@
  * @author Alexander Robertson -> contact-sasha@proton.me
  */
 export interface IDepartmentAction {
-  payload: any,
-  type: string
+  readonly payload: any,
+  readonly type: string
 }
