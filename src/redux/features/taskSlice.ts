@@ -7,7 +7,14 @@ import {IDepartmentAction} from "../interfaces";
 import {ITask} from "../../common/interfaces";
 import {IncorrectActionTypeError, TaskDoesNotExistError} from "../exceptions";
 
-// Define an interface for the taskSlice.
+/**
+ * This interface defines the Task department - a subset of the Redux store.
+ *
+ * @interface IBoardDepartment
+ * @member {Set<IBoard>} boards A set of tasks contained within this department.
+ * @member {number} The ID that will be assigned to the next member of the department.
+ * @author Alexander Robertson -> contact-sasha@proton.me
+ */
 interface ITaskDepartment {
   tasks: Set<ITask>,
   next_id: number
@@ -19,11 +26,28 @@ const initialState: ITaskDepartment = {
   next_id: 1
 }
 
+/**
+ * This function creates the taskSlice.
+ *
+ * @property {string} name The name of the slice.
+ * @property {IBoardDepartment} The initial state of this slice.
+ * @property {Object} reducers This object contains all reducers for this slice.
+ * @returns {Slice} A slice object.
+ * @author Alexander Robertson -> contact-sasha@proton.me
+ */
 const taskSlice: Slice = createSlice({
   name: "tasks",
   initialState: initialState,
   reducers: {
 
+    /**
+     * This function adds a task to the Task department of the Redux store.
+     *
+     * @param {IBoardDepartment} department The department of the Redux store to modify.
+     * @param {IDepartmentAction} action The action being carried out in order to modify the store.
+     * @throws IncorrectActionTypeError if the provided action type is not "addTask".
+     * @author Alexander Robertson -> contact-sasha@proton.me
+     */
     addTask: (department: ITaskDepartment, action: IDepartmentAction): void => {
       // Validate action type.
       if (action.type === "addTask")
@@ -32,6 +56,15 @@ const taskSlice: Slice = createSlice({
         throw new IncorrectActionTypeError("addTask", action.type)
     },
 
+    /**
+     * This function edits a task in the Task department of the Redux store.
+     *
+     * @param {IBoardDepartment} department The department of the Redux store to modify.
+     * @param {IDepartmentAction} action The action being carried out in order to modify the store.
+     * @throws IncorrectActionTypeError if the provided action type is not "editTask".
+     * @throws ListDoesNotExistError If the Task provided for editing does not exist within the department.
+     * @author Alexander Robertson -> contact-sasha@proton.me
+     */
     editTask: (department: ITaskDepartment, action: IDepartmentAction): void => {
       // Validate action type.
       if (action.type !== "editTask")
@@ -51,6 +84,15 @@ const taskSlice: Slice = createSlice({
         throw new TaskDoesNotExistError(action.payload.id)
     },
 
+    /**
+     * This function removes a task from the List department of the Redux store.
+     *
+     * @param {IListDepartment} department The department of the Redux store to modify.
+     * @param {IDepartmentAction} action The action being carried out in order to modify the store.
+     * @throws IncorrectActionTypeError if the provided action type is not "removeTask".
+     * @throws ListDoesNotExistError If the Task provided for removal does not exist within the department.
+     * @author Alexander Robertson -> contact-sasha@proton.me
+     */
     removeTask: (department: ITaskDepartment, action: IDepartmentAction): void => {
       // Validate action type.
       if (action.type !== "removeTask")

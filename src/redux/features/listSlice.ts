@@ -62,6 +62,7 @@ const listSlice: Slice = createSlice({
      * @param {IListDepartment} department The department of the Redux store to modify.
      * @param {IDepartmentAction} action The action being carried out in order to modify the store.
      * @throws IncorrectActionTypeError if the provided action type is not "editList".
+     * @throws ListDoesNotExistError If the List provided for editing does not exist within the department.
      * @author Alexander Robertson -> contact-sasha@proton.me
      */
     editList: (department: IListDepartment, action: IDepartmentAction): void => {
@@ -84,11 +85,12 @@ const listSlice: Slice = createSlice({
     },
 
     /**
-     * This function removes a list to the List department of the Redux store.
+     * This function removes a list from the List department of the Redux store.
      *
      * @param {IListDepartment} department The department of the Redux store to modify.
      * @param {IDepartmentAction} action The action being carried out in order to modify the store.
      * @throws IncorrectActionTypeError if the provided action type is not "removeList".
+     * @throws ListDoesNotExistError If the List provided for removal does not exist within the department.
      * @author Alexander Robertson -> contact-sasha@proton.me
      */
     removeList: (department: IListDepartment, action: IDepartmentAction): void => {
