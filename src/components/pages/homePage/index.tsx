@@ -7,6 +7,7 @@ const HomePage = ({ navigation }) => {
     <View>
       {data.boards.map((board) => (
         <Button
+          key={board.id}
           onPress={() => navigation.navigate(BoardRoute, { id: board.id })}
           title={board.name}
         />
