@@ -33,13 +33,12 @@ const boardSlice: Slice = createSlice({
     },
 
     editBoard: (department: IBoardDepartment, action: IDepartmentAction) => {
-
       // Validate action type.
       if (action.type !== "editBoard")
         throw new IncorrectActionTypeError("editBoard", action.type)
 
       // Change board if it exists.
-      let boardFound = false
+      let boardFound: boolean = false
       for (let board of department.boards)
         if (board.id == action.payload.id) {
           boardFound = true
@@ -52,14 +51,14 @@ const boardSlice: Slice = createSlice({
     },
 
     removeBoard: (department, action) => {
-
       // Validate action type.
       if (action.type !== "removeBoard")
         throw new IncorrectActionTypeError("removeBoard", action.type)
 
-      let boardFound = false
-      for (let board of department.boards)
-        if (board.id == action.payload.id) {
+      // Check if board exists.
+      let boardFound: boolean = false
+      for (const board of department.boards)
+        if (board.id === action.payload.id) {
           boardFound = true
           break
         }
