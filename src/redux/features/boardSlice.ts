@@ -43,6 +43,7 @@ const boardSlice: Slice = createSlice({
         if (board.id == action.payload.id) {
           boardFound = true
           board = action.payload
+          break
         }
 
       // Throw an error if the board was not found.

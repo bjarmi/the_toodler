@@ -2,9 +2,8 @@
 * This module contains the Redux store.
 * */
 
-import {configureStore, combineReducers, bindActionCreators} from "@reduxjs/toolkit";
-import {boardActions, boardReducer} from "./features"
-import {listActions, listReducer} from "./features"
+import {bindActionCreators, combineReducers, configureStore} from "@reduxjs/toolkit";
+import {boardActions, boardReducer, listActions, listReducer, taskActions, taskReducer} from "./features"
 
 // Configure the Redux store.
 export const store = configureStore({
@@ -12,6 +11,7 @@ export const store = configureStore({
   reducer: combineReducers({
     "boards": boardReducer,
     "lists": listReducer,
+    "tasks": taskReducer,
   })
 })
 
@@ -19,6 +19,7 @@ export const store = configureStore({
 export const dispatchAction = bindActionCreators({
   ...boardActions,
   ...listActions,
+  ...taskActions
 }, store.dispatch)
 
 // Infer the type of store.getState.
