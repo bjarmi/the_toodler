@@ -13,7 +13,7 @@ interface IBoardDepartment {
   next_id: number
 }
 
-// Define the initial state for the Board store department.
+// Define the initial state for the Board department.
 const initialState: IBoardDepartment = {
   boards: new Set(),
   next_id: 1
@@ -24,63 +24,50 @@ const boardSlice: Slice = createSlice({
   name: "boards",
   initialState: initialState,
   reducers: {
+
     addBoard: (department: IBoardDepartment, action: IDepartmentAction): void => {
-
       // Validate action type.
-      if (action.type === "addBoard")
-        department.boards.add(action.payload)
-      else
+      if (action.type !== "addBoard")
         throw new IncorrectActionTypeError("addBoard", action.type)
-
-      // Add board.
-      const new_board: IBoard = action.payload
-      department.boards.add(new_board)
+      department.boards.add(action.payload)
     },
-    editBoard: (department: IBoardDepartment, action: IDepartmentAction) => {
 
+    editBoard: (department: IBoardDepartment, action: IDepartmentAction) => {
       // Validate action type.
-      if (action.type === "editBoard")
-        department.boards.add(action.payload)
-      else
+      if (action.type !== "editBoard")
         throw new IncorrectActionTypeError("editBoard", action.type)
 
-      // Parse the new board from the action payload.
-      const editedBoard: IBoard = action.payload
-
       // Change board if it exists.
-      let boardFound = false
+      let boardFound: boolean = false
       for (let board of department.boards)
-        if (board.id == editedBoard.id) {
+        if (board.id == action.payload.id) {
           boardFound = true
-          board = editedBoard
+          board = action.payload
         }
 
       // Throw an error if the board was not found.
       if (!boardFound)
-        throw new BoardDoesNotExistError(editedBoard.id)
+        throw new BoardDoesNotExistError(action.payload.id)
     },
-    removeBoard: (department, action) => {
 
+    removeBoard: (department, action) => {
       // Validate action type.
-      if (action.type === "removeBoard")
-        department.boards.add(action.payload)
-      else
+      if (action.type !== "removeBoard")
         throw new IncorrectActionTypeError("removeBoard", action.type)
 
-      const deleteBoard: IBoard = action.payload
-
-      let boardFound = false
-      for (let board of department.boards)
-        if (board.id == deleteBoard.id) {
+      // Check if board exists.
+      let boardFound: boolean = false
+      for (const board of department.boards)
+        if (board.id === action.payload.id) {
           boardFound = true
           break
         }
 
       // Delete board.
       if (boardFound)
-        department.boards.delete(deleteBoard)
+        department.boards.delete(action.payload)
       else
-        throw new BoardDoesNotExistError(deleteBoard.id)
+        throw new BoardDoesNotExistError(action.payload.id)
     }
   }
 })
