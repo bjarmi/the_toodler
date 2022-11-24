@@ -1,12 +1,12 @@
 import { View, Text, Button } from "react-native";
 import { data } from "../../../../dataStub";
-import { ListRoute } from "../../../common/constants";
+import { BoardScreenProps } from "../../../common/type";
 
 const getLists = (boardId: number) =>
   data.lists.filter((list) => list.boardId === boardId);
 
-const BoardPage = ({ route, navigation }) => {
-  const lists = getLists(route.params.id);
+const BoardPage = ({ route, navigation }: BoardScreenProps) => {
+  const lists = getLists(route.params.boardId);
 
   return (
     <View>
@@ -14,7 +14,7 @@ const BoardPage = ({ route, navigation }) => {
         <Button
           key={list.id}
           title={list.name}
-          onPress={() => navigation.navigate(ListRoute, { listId: list.id })}
+          onPress={() => navigation.navigate("ListPage", { listId: list.id })}
         />
       ))}
     </View>

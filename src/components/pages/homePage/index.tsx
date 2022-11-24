@@ -1,14 +1,16 @@
-import { View, Text, Button } from "react-native";
+import { View, Button } from "react-native";
 import { data } from "../../../../dataStub";
-import { BoardRoute } from "../../../common/constants";
+import { HomeScreenProps } from "../../../common/type";
 
-const HomePage = ({ navigation }) => {
+const HomePage = ({ navigation }: HomeScreenProps) => {
   return (
     <View>
       {data.boards.map((board) => (
         <Button
           key={board.id}
-          onPress={() => navigation.navigate(BoardRoute, { id: board.id })}
+          onPress={() =>
+            navigation.navigate("BoardPage", { boardId: board.id })
+          }
           title={board.name}
         />
       ))}
