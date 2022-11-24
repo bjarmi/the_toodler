@@ -1,20 +1,16 @@
-import { View, Button } from "react-native";
+import { SafeAreaView, ScrollView, View } from "react-native";
 import { data } from "../../../../dataStub";
-import { HomeScreenProps } from "../../../common/type";
+import BoardCard from "../../cards/boardCard";
 
-const HomePage = ({ navigation }: HomeScreenProps) => {
+const HomePage = () => {
   return (
-    <View>
-      {data.boards.map((board) => (
-        <Button
-          key={board.id}
-          onPress={() =>
-            navigation.navigate("BoardPage", { boardId: board.id })
-          }
-          title={board.name}
-        />
-      ))}
-    </View>
+    <SafeAreaView style={{ flex: 1 }}>
+      <ScrollView>
+        {data.boards.map((board) => (
+          <BoardCard key={board.id} board={board} />
+        ))}
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
