@@ -5,9 +5,9 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: "column",
         marginTop: 12,
-        marginHorizontal: 12,
+        marginHorizontal: 24,
         padding: 10,
-        backgroundColor: "rgba(242, 106, 97, .5)",
+        backgroundColor: "rgba(242, 106, 97, 1)",
     },
     cardContent: {
         flex: 1,
