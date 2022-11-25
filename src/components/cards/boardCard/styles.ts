@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: "column",
         marginTop: 12,
-        marginHorizontal: 24,
+        marginHorizontal: 12,
         padding: 10,
         backgroundColor: "rgba(242, 106, 97, 1)",
     },
