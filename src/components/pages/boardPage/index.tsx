@@ -1,29 +1,28 @@
 import { View, Text, Button, SafeAreaView, ScrollView } from "react-native";
 import { data } from "../../../../dataStub";
+import { IBoard, IList } from "../../../common/interfaces";
 import { BoardScreenProps } from "../../../common/type";
+import ListCard from "../../cards/listCard";
+import EntityList from "../../list";
 import BoardOverview from "./boardOverview";
 
-const getLists = (boardId: number) =>
-  data.lists.filter((list) => list.boardId === boardId);
+// NOTE: Temp function, replace with redux
+const getLists = (boardId: number): IList[] =>
+  data.lists.filter((list: IList) => list.boardId === boardId);
 
-const getBoard = (boardId: number) =>
-  data.boards.filter((board) => board.id === boardId)[0];
+// NOTE: Temp function, replace with redux
+const getBoard = (boardId: number): IBoard =>
+  data.boards.filter((board: IBoard) => board.id === boardId)[0];
 
-const BoardPage = ({ route, navigation }: BoardScreenProps) => {
-  const lists = getLists(route.params.boardId);
-  const board = getBoard(route.params.boardId);
+const BoardPage = ({ route }: BoardScreenProps) => {
+  const lists: IList[] = getLists(route.params.boardId);
+  const board: IBoard = getBoard(route.params.boardId);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView>
         <BoardOverview board={board} />
-        {lists.map((list) => (
-          <Button
-            key={list.id}
-            title={list.name}
-            onPress={() => navigation.navigate("ListPage", { listId: list.id })}
-          />
-        ))}
+        <EntityList<IList> entities={lists} entityComponent={ListCard} />
       </ScrollView>
     </SafeAreaView>
   );

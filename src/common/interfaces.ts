@@ -11,10 +11,10 @@
  * @member {string} description The description of the entity -> optional.
  * @author Alexander Robertson -> contact-sasha@proton.me
  */
-interface IEntity {
-  id: number,
-  name: string,
-  description?: string
+export interface IEntity {
+  id: number;
+  name: string;
+  description?: string;
 }
 
 /**
@@ -25,7 +25,7 @@ interface IEntity {
  * @author Alexander Robertson -> contact-sasha@proton.me
  */
 export interface IBoard extends IEntity {
-  thumbnail?: string
+  thumbnail?: string;
 }
 
 /**
@@ -37,8 +37,8 @@ export interface IBoard extends IEntity {
  * @author Alexander Robertson -> contact-sasha@proton.me
  */
 export interface IList extends IEntity {
-  boardID: number,
-  colour: string
+  boardId: number;
+  color: string;
 }
 
 /**
@@ -51,8 +51,7 @@ export interface IList extends IEntity {
  * @author Alexander Robertson -> contact-sasha@proton.me
  */
 export interface ITask extends IEntity {
-  listID: number,
-  description: string,
-  finished: boolean
+  listId: number;
+  description: string;
+  isFinished: boolean;
 }
-
