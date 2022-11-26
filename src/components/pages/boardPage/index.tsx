@@ -7,7 +7,7 @@ import ListCard from "../../cards/listCard";
 import EntityList from "../../list";
 import BoardOverview from "./boardOverview";
 
-const BoardPage = ({ route }: BoardScreenProps): ReactNode => {
+const BoardPage = ({ route }: BoardScreenProps) => {
   const board: IBoard = route.params.board;
   const { lists } = useAppSelector((store) => store.lists);
 
