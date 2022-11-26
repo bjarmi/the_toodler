@@ -10,7 +10,7 @@ const ListCard = (list: IList) => {
   return (
     <Card
       elevation={2}
-      onPress={() => navigation.navigate("ListPage", { listId: list.id })}
+      onPress={() => navigation.navigate("ListPage", { list })}
       style={{ ...styles.card, backgroundColor: list.color }}
     >
       <Title>{list.name}</Title>
