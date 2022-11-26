@@ -6,6 +6,7 @@ import {createSlice, Slice} from "@reduxjs/toolkit";
 import {IDepartmentAction} from "../interfaces";
 import {IList} from "../../common/interfaces";
 import {ListDoesNotExistError, IncorrectActionTypeError} from "../exceptions";
+import {data} from "../dataStub"
 
 /**
  * This interface defines the List department - a subset of the Redux store.
@@ -16,14 +17,12 @@ import {ListDoesNotExistError, IncorrectActionTypeError} from "../exceptions";
  * @author Alexander Robertson -> contact-sasha@proton.me
  */
 interface IListDepartment {
-  lists: Set<IList>,
-  next_id: number
+  lists: Set<IList>
 }
 
 // Define the initial state for the List department.
 const initialState: IListDepartment = {
-  lists: new Set(),
-  next_id: 1
+  lists: new Set<IList>(data.lists)
 }
 
 /**

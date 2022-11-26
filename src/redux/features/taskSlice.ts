@@ -6,6 +6,7 @@ import {createSlice, Slice} from "@reduxjs/toolkit";
 import {IDepartmentAction} from "../interfaces";
 import {ITask} from "../../common/interfaces";
 import {IncorrectActionTypeError, TaskDoesNotExistError} from "../exceptions";
+import {data} from "../dataStub"
 
 /**
  * This interface defines the Task department - a subset of the Redux store.
@@ -16,14 +17,12 @@ import {IncorrectActionTypeError, TaskDoesNotExistError} from "../exceptions";
  * @author Alexander Robertson -> contact-sasha@proton.me
  */
 interface ITaskDepartment {
-  tasks: Set<ITask>,
-  next_id: number
+  tasks: Set<ITask>
 }
 
 // Define the initial state for the Task department.
 const initialState: ITaskDepartment = {
-  tasks: new Set(),
-  next_id: 1
+  tasks: new Set<ITask>(data.tasks)
 }
 
 /**

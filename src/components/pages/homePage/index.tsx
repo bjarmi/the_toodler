@@ -1,5 +1,5 @@
 import { SafeAreaView, ScrollView } from "react-native";
-import { data } from "../../../../dataStub";
+import { data } from "../../../redux/dataStub";
 import { IBoard } from "../../../common/interfaces";
 import BoardCard from "../../cards/boardCard";
 import EntityList from "../../list";

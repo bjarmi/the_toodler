@@ -1,5 +1,5 @@
 import { SafeAreaView, ScrollView } from "react-native";
-import { data } from "../../../../dataStub";
+import { data } from "../../../redux/dataStub";
 import { ITask } from "../../../common/interfaces";
 import { ListScreenProps } from "../../../common/type";
 import TaskCard from "../../cards/taskCard";
