@@ -3,16 +3,21 @@ import { useAppSelector } from "../../../common/hooks";
 import { IBoard } from "../../../common/interfaces";
 import BoardCard from "../../cards/boardCard";
 import EntityList from "../../list";
+import PageLayout from "../pageLayout";
 
 const HomePage = () => {
   const { boards } = useAppSelector((store) => store.boards);
 
+  const openCreateModal = () => {
+    console.log("Open modal");
+  };
+
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <PageLayout action={() => openCreateModal()}>
       <ScrollView>
         <EntityList<IBoard> entities={boards} entityComponent={BoardCard} />
       </ScrollView>
-    </SafeAreaView>
+    </PageLayout>
   );
 };
 
