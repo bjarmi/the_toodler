@@ -1,14 +1,17 @@
-import { SafeAreaView, ScrollView, View } from "react-native";
+import { SafeAreaView, ScrollView } from "react-native";
 import { data } from "../../../../dataStub";
+import { IBoard } from "../../../common/interfaces";
 import BoardCard from "../../cards/boardCard";
+import EntityList from "../../list";
 
 const HomePage = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView>
-        {data.boards.map((board) => (
-          <BoardCard key={board.id} board={board} />
-        ))}
+        <EntityList<IBoard>
+          entities={data.boards}
+          entityComponent={BoardCard}
+        />
       </ScrollView>
     </SafeAreaView>
   );

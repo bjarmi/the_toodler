@@ -7,15 +7,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faPoo } from "@fortawesome/free-solid-svg-icons";
 import styles from "./styles";
 
-interface Props {
-  board: IBoard;
-}
-
-const BoardCard = ({ board }: Props) => {
+const BoardCard = (board: IBoard) => {
   const navigation = useNavigation<HomeScreenProps["navigation"]>();
 
   return (
     <Card
+      key={board.id}
       style={styles.card}
       elevation={2}
       onPress={() => navigation.navigate("BoardPage", { boardId: board.id })}

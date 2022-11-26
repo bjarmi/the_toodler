@@ -11,7 +11,7 @@
  * @member {string} description The description of the entity -> optional.
  * @author Alexander Robertson -> contact-sasha@proton.me
  */
-interface IEntity {
+export interface IEntity {
   id: number;
   name: string;
   description?: string;
