@@ -1,5 +1,5 @@
 import { View, Text, Button, SafeAreaView, ScrollView } from "react-native";
-import { data } from "../../../../dataStub";
+import { data } from "../../../redux/dataStub";
 import { IBoard, IList } from "../../../common/interfaces";
 import { BoardScreenProps } from "../../../common/type";
 import ListCard from "../../cards/listCard";
