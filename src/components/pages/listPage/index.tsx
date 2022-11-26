@@ -1,20 +1,31 @@
 import { SafeAreaView, ScrollView } from "react-native";
-import { data } from "../../../../dataStub";
-import { ITask } from "../../../common/interfaces";
-import { ListScreenProps } from "../../../common/type";
+import { IList, ITask } from "../../../common/interfaces";
 import TaskCard from "../../cards/taskCard";
 import EntityList from "../../list";
-
-const getTasks = (listId: number) =>
-  data.tasks.filter((task) => task.listId === listId);
+import { useAppSelector } from "../../../common/hooks";
+import { ListScreenProps } from "../../../common/type";
 
 const ListPage = ({ route }: ListScreenProps) => {
-  const tasks = getTasks(route.params.listId);
+  const list: IList = route.params.list;
+  const { tasks } = useAppSelector((store) => store.tasks);
+
+  const getLinkedTasks = (): Set<ITask> => {
+    const filteredTasks: Set<ITask> = new Set();
+
+    tasks.forEach((task: ITask) => {
+      if (task.listId === list.id) filteredTasks.add(task);
+    });
+
+    return filteredTasks;
+  };
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView>
-        <EntityList<ITask> entities={tasks} entityComponent={TaskCard} />
+        <EntityList<ITask>
+          entities={getLinkedTasks()}
+          entityComponent={TaskCard}
+        />
       </ScrollView>
     </SafeAreaView>
   );

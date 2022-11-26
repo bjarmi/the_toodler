@@ -1,28 +1,34 @@
-import { View, Text, Button, SafeAreaView, ScrollView } from "react-native";
-import { data } from "../../../../dataStub";
+import { ReactNode } from "react";
+import { SafeAreaView, ScrollView } from "react-native";
+import { useAppSelector } from "../../../common/hooks";
 import { IBoard, IList } from "../../../common/interfaces";
 import { BoardScreenProps } from "../../../common/type";
 import ListCard from "../../cards/listCard";
 import EntityList from "../../list";
 import BoardOverview from "./boardOverview";
 
-// NOTE: Temp function, replace with redux
-const getLists = (boardId: number): IList[] =>
-  data.lists.filter((list: IList) => list.boardId === boardId);
+const BoardPage = ({ route }: BoardScreenProps): ReactNode => {
+  const board: IBoard = route.params.board;
+  const { lists } = useAppSelector((store) => store.lists);
 
-// NOTE: Temp function, replace with redux
-const getBoard = (boardId: number): IBoard =>
-  data.boards.filter((board: IBoard) => board.id === boardId)[0];
+  const getLinkedLists = (): Set<IList> => {
+    const filteredLists: Set<IList> = new Set();
 
-const BoardPage = ({ route }: BoardScreenProps) => {
-  const lists: IList[] = getLists(route.params.boardId);
-  const board: IBoard = getBoard(route.params.boardId);
+    lists.forEach((list: IList) => {
+      if (list.boardId === board.id) filteredLists.add(list);
+    });
+
+    return filteredLists;
+  };
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView>
         <BoardOverview board={board} />
-        <EntityList<IList> entities={lists} entityComponent={ListCard} />
+        <EntityList<IList>
+          entities={getLinkedLists()}
+          entityComponent={ListCard}
+        />
       </ScrollView>
     </SafeAreaView>
   );
