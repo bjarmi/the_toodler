@@ -4,12 +4,13 @@ import TaskCard from "../../cards/taskCard";
 import EntityList from "../../list";
 import { useAppSelector } from "../../../common/hooks";
 import { ListScreenProps } from "../../../common/type";
+import { ReactNode } from "react";
 
-const ListPage = ({ route }: ListScreenProps) => {
+const ListPage = ({ route }: ListScreenProps): ReactNode => {
   const list: IList = route.params.list;
   const { tasks } = useAppSelector((store) => store.tasks);
 
-  const getLinkedTasks = (): Set<ITask> => {
+  const getTasksByList = (list: IList): Set<ITask> => {
     const filteredTasks: Set<ITask> = new Set();
 
     tasks.forEach((task: ITask) => {
@@ -23,7 +24,7 @@ const ListPage = ({ route }: ListScreenProps) => {
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView>
         <EntityList<ITask>
-          entities={getLinkedTasks()}
+          entities={getTasksByList(list)}
           entityComponent={TaskCard}
         />
       </ScrollView>

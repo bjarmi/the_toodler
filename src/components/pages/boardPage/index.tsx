@@ -11,7 +11,7 @@ const BoardPage = ({ route }: BoardScreenProps): ReactNode => {
   const board: IBoard = route.params.board;
   const { lists } = useAppSelector((store) => store.lists);
 
-  const getLinkedLists = (): Set<IList> => {
+  const getListsByBoard = (board: IBoard): Set<IList> => {
     const filteredLists: Set<IList> = new Set();
 
     lists.forEach((list: IList) => {
@@ -26,7 +26,7 @@ const BoardPage = ({ route }: BoardScreenProps): ReactNode => {
       <ScrollView>
         <BoardOverview board={board} />
         <EntityList<IList>
-          entities={getLinkedLists()}
+          entities={getListsByBoard(board)}
           entityComponent={ListCard}
         />
       </ScrollView>
