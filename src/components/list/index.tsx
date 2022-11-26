@@ -6,17 +6,30 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { Title } from "react-native-paper";
 import styles from "./styles";
 
-interface Props<EntityType> {
-  entities: EntityType[];
+interface Props<T> {
+  entities: Set<T>;
   entityComponent: (entity: IEntity) => ReactNode;
 }
 
+const createList = (
+  entities: Set<IEntity>,
+  component: (entity: IEntity) => ReactNode
+): ReactNode[] => {
+  let nodes: ReactNode[] = [];
+
+  entities.forEach((entity: IEntity) => {
+    nodes.push(component(entity));
+  });
+
+  return nodes;
+};
+
 const EntityList = <E extends IEntity>({
-  entities: entityList,
+  entities,
   entityComponent,
 }: Props<E>) =>
-  entityList.length !== 0 ? (
-    <>{entityList.map((entity: IEntity) => entityComponent(entity))}</>
+  entities.size !== 0 ? (
+    <>{createList(entities, entityComponent)}</>
   ) : (
     <View style={styles.emptyView}>
       <FontAwesomeIcon size={96} icon={faFaceMeh} />
