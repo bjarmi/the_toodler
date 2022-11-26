@@ -15,7 +15,7 @@ const BoardCard = (board: IBoard) => {
       key={board.id}
       style={styles.card}
       elevation={2}
-      onPress={() => navigation.navigate("BoardPage", { boardId: board.id })}
+      onPress={() => navigation.navigate("BoardPage", { board })}
     >
       <View style={styles.cardContent}>
         <View style={styles.imageContainer}>
