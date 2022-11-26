@@ -12,7 +12,6 @@ const BoardCard = (board: IBoard) => {
 
   return (
     <Card
-      key={board.id}
       style={styles.card}
       elevation={2}
       onPress={() => navigation.navigate("BoardPage", { board })}

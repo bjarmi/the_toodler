@@ -12,11 +12,7 @@ const TaskCard = (task: ITask) => {
   const list: IList = data.lists.filter((list) => list.id === task.listId)[0];
 
   return (
-    <Card
-      key={task.id}
-      elevation={2}
-      style={{ ...styles.card, backgroundColor: list.color }}
-    >
+    <Card elevation={2} style={{ ...styles.card, backgroundColor: list.color }}>
       <View style={styles.content}>
         <Title>{list.name}</Title>
         <RadioButton
