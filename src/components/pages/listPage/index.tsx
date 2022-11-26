@@ -4,7 +4,6 @@ import { ListScreenProps } from "../../../common/type";
 import TaskCard from "../../cards/taskCard";
 import EntityList from "../../list";
 import { useAppSelector } from "../../../common/hooks";
-import { ListScreenProps } from "../../../common/type";
 import { ReactNode } from "react";
 
 const ListPage = ({ route }: ListScreenProps): ReactNode => {
