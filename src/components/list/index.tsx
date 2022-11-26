@@ -18,7 +18,7 @@ const createList = (
   let nodes: ReactNode[] = [];
 
   entities.forEach((entity: IEntity) => {
-    nodes.push(component(entity));
+    nodes.push(<View key={entity.id}>{component(entity)}</View>);
   });
 
   return nodes;
