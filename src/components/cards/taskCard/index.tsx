@@ -1,7 +1,7 @@
 import { Card, Title } from "react-native-paper";
 import { IList, ITask } from "../../../common/interfaces";
 import styles from "./styles";
-import { data } from "../../../../dataStub";
+import { data } from "../../../redux/dataStub";
 import { View } from "react-native";
 import { RadioButton } from "react-native-paper";
 import { useState } from "react";

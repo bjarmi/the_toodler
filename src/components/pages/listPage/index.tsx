@@ -1,5 +1,6 @@
 import { SafeAreaView, ScrollView } from "react-native";
 import { IList, ITask } from "../../../common/interfaces";
+import { ListScreenProps } from "../../../common/type";
 import TaskCard from "../../cards/taskCard";
 import EntityList from "../../list";
 import { useAppSelector } from "../../../common/hooks";

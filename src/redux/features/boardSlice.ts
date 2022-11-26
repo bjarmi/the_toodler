@@ -6,6 +6,7 @@ import {createSlice, Slice} from "@reduxjs/toolkit";
 import {IDepartmentAction} from "../interfaces";
 import {IBoard} from "../../common/interfaces";
 import {BoardDoesNotExistError, IncorrectActionTypeError} from "../exceptions";
+import {data} from "../dataStub"
 
 /**
  * This interface defines the Board department - a subset of the Redux store.
@@ -16,14 +17,12 @@ import {BoardDoesNotExistError, IncorrectActionTypeError} from "../exceptions";
  * @author Alexander Robertson -> contact-sasha@proton.me
  */
 interface IBoardDepartment {
-  boards: Set<IBoard>,
-  next_id: number
+  boards: Set<IBoard>
 }
 
 // Define the initial state for the Board department.
 const initialState: IBoardDepartment = {
-  boards: new Set(),
-  next_id: 1
+  boards: new Set<IBoard>(data.boards)
 }
 
 /**
