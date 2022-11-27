@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
-import { SafeAreaView, StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native";
 import { FAB } from "react-native-paper";
+import styles from "./styles";
 
 interface Props {
   action: () => void;
@@ -15,18 +16,5 @@ const PageLayout = ({ action, children }: Props) => {
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  fab: {
-    position: "absolute",
-    margin: 16,
-    right: 0,
-    bottom: 0,
-    backgroundColor: "#9DFFA7",
-  },
-});
 
 export default PageLayout;

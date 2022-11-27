@@ -11,8 +11,3 @@ export type PageParams = {
 export type HomeScreenProps = NativeStackScreenProps<PageParams, "HomePage">;
 export type BoardScreenProps = NativeStackScreenProps<PageParams, "BoardPage">;
 export type ListScreenProps = NativeStackScreenProps<PageParams, "ListPage">;
-
-export type GenericScreen =
-  | HomeScreenProps
-  | BoardScreenProps
-  | ListScreenProps;

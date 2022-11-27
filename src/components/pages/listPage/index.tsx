@@ -4,21 +4,13 @@ import { ListScreenProps } from "../../../common/type";
 import TaskCard from "../../cards/taskCard";
 import EntityList from "../../list";
 import { useAppSelector } from "../../../common/hooks";
-import { ReactNode } from "react";
 
-const ListPage = ({ route }: ListScreenProps): ReactNode => {
+const ListPage = ({ route }: ListScreenProps) => {
   const list: IList = route.params.list;
   const { tasks } = useAppSelector((store) => store.tasks);
 
-  const getTasksByList = (list: IList): Set<ITask> => {
-    const filteredTasks: Set<ITask> = new Set();
-
-    tasks.forEach((task: ITask) => {
-      if (task.listId === list.id) filteredTasks.add(task);
-    });
-
-    return filteredTasks;
-  };
+  const getTasksByList = (list: IList): ITask[] =>
+    tasks.filter((task: ITask) => task.listId === list.id);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>

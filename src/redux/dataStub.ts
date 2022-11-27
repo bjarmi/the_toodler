@@ -24,46 +24,6 @@ export const data = {
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mauris leo, sodales eget porta eget, ornare et nulla. Vivamus ultricies.",
     },
-    {
-      id: 4,
-      name: "Bucket list",
-      thumbnailPhoto:
-        "https://images-na.ssl-images-amazon.com/images/I/61fq9A8jEGL._SL1500_.jpg",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mauris leo, sodales eget porta eget, ornare et nulla. Vivamus ultricies.",
-    },
-    {
-      id: 5,
-      name: "Bucket list",
-      thumbnailPhoto:
-        "https://images-na.ssl-images-amazon.com/images/I/61fq9A8jEGL._SL1500_.jpg",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mauris leo, sodales eget porta eget, ornare et nulla. Vivamus ultricies.",
-    },
-    {
-      id: 6,
-      name: "Bucket list",
-      thumbnailPhoto:
-        "https://images-na.ssl-images-amazon.com/images/I/61fq9A8jEGL._SL1500_.jpg",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mauris leo, sodales eget porta eget, ornare et nulla. Vivamus ultricies.",
-    },
-    {
-      id: 7,
-      name: "Bucket list",
-      thumbnailPhoto:
-        "https://images-na.ssl-images-amazon.com/images/I/61fq9A8jEGL._SL1500_.jpg",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mauris leo, sodales eget porta eget, ornare et nulla. Vivamus ultricies.",
-    },
-    {
-      id: 8,
-      name: "Bucket list",
-      thumbnailPhoto:
-        "https://images-na.ssl-images-amazon.com/images/I/61fq9A8jEGL._SL1500_.jpg",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mauris leo, sodales eget porta eget, ornare et nulla. Vivamus ultricies.",
-    },
   ],
   lists: [
     {

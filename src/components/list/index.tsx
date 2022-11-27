@@ -7,12 +7,12 @@ import { Title } from "react-native-paper";
 import styles from "./styles";
 
 interface Props<T> {
-  entities: Set<T>;
+  entities: T[];
   entityComponent: (entity: IEntity) => ReactNode;
 }
 
 const createList = (
-  entities: Set<IEntity>,
+  entities: IEntity[],
   component: (entity: IEntity) => ReactNode
 ): ReactNode[] => {
   let nodes: ReactNode[] = [];
@@ -28,7 +28,7 @@ const EntityList = <E extends IEntity>({
   entities,
   entityComponent,
 }: Props<E>) =>
-  entities.size !== 0 ? (
+  entities.length !== 0 ? (
     <>{createList(entities, entityComponent)}</>
   ) : (
     <View style={styles.emptyView}>

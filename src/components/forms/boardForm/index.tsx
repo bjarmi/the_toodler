@@ -1,0 +1,57 @@
+import { useState } from "react";
+import { View, StyleSheet } from "react-native";
+import { Button, TextInput } from "react-native-paper";
+import { IBoardForm } from "../../../common/interfaces";
+
+const emptyForm: IBoardForm = {
+  name: "",
+  description: "",
+  thumbnail: "",
+};
+
+interface Props {
+  onSubmit: (board: IBoardForm) => void;
+  initialValue?: IBoardForm;
+}
+
+const BoardForm = ({ onSubmit, initialValue }: Props) => {
+  const [form, setForm] = useState(initialValue ? initialValue : emptyForm);
+
+  const inputHandler = (name: string, value: string) =>
+    setForm({
+      ...form,
+      [name]: value,
+    });
+
+  const handleOnSubmit = () => {
+    onSubmit(form);
+  };
+
+  return (
+    <View>
+      <TextInput
+        style={styles.textInput}
+        label="Board Name"
+        value={form.name}
+        onChangeText={(value: string) => inputHandler("name", value)}
+      />
+      <TextInput
+        style={styles.textInput}
+        label="Description"
+        value={form.description}
+        onChangeText={(value: string) => inputHandler("description", value)}
+      />
+      <Button mode="contained" onPress={() => handleOnSubmit()}>
+        Create
+      </Button>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  textInput: {
+    marginBottom: 10,
+  },
+});
+
+export default BoardForm;

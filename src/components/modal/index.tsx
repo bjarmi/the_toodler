@@ -1,22 +1,28 @@
-import { Modal as NativeModal, Pressable } from "react-native";
+import { TouchableOpacity, TouchableWithoutFeedback } from "react-native";
 import { Card } from "react-native-paper";
 import styles from "./styles";
+import Modal from "react-native-modal";
 
-const Modal = ({ visible, hideModal, children }) => {
+const CustomModal = ({ visible, hideModal, children }) => {
   return (
-    <NativeModal
-      animationType="slide"
-      transparent={true}
-      visible={visible}
-      onRequestClose={hideModal}
+    <Modal
+      isVisible={visible}
+      onBackButtonPress={hideModal}
+      onBackdropPress={hideModal}
     >
-      <Pressable onPress={() => hideModal()} style={styles.centeredView}>
-        <Card elevation={5} style={styles.modalCard}>
-          {children}
-        </Card>
-      </Pressable>
-    </NativeModal>
+      <TouchableOpacity
+        style={styles.container}
+        activeOpacity={1}
+        onPressOut={hideModal}
+      >
+        <TouchableWithoutFeedback>
+          <Card elevation={5} style={styles.modalCard}>
+            {children}
+          </Card>
+        </TouchableWithoutFeedback>
+      </TouchableOpacity>
+    </Modal>
   );
 };
 
-export default Modal;
+export default CustomModal;
