@@ -4,7 +4,11 @@ import { useNavigation } from "@react-navigation/native";
 import { BoardScreenProps } from "../../../common/type";
 import styles from "./styles";
 
-const ListCard = (list: IList) => {
+interface Props {
+  list: IList;
+}
+
+const ListCard = ({ list }: Props) => {
   const navigation = useNavigation<BoardScreenProps["navigation"]>();
 
   return (

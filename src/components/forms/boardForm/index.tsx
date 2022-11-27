@@ -11,10 +11,11 @@ const emptyForm: IBoardForm = {
 
 interface Props {
   onSubmit: (board: IBoardForm) => void;
+  onDelete?: () => void;
   initialValue?: IBoardForm;
 }
 
-const BoardForm = ({ onSubmit, initialValue }: Props) => {
+const BoardForm = ({ onSubmit, onDelete, initialValue }: Props) => {
   const [form, setForm] = useState(initialValue ? initialValue : emptyForm);
 
   const inputHandler = (name: string, value: string) =>
@@ -23,9 +24,7 @@ const BoardForm = ({ onSubmit, initialValue }: Props) => {
       [name]: value,
     });
 
-  const handleOnSubmit = () => {
-    onSubmit(form);
-  };
+  const handleOnSubmit = () => onSubmit(form);
 
   return (
     <View>
@@ -41,9 +40,18 @@ const BoardForm = ({ onSubmit, initialValue }: Props) => {
         value={form.description}
         onChangeText={(value: string) => inputHandler("description", value)}
       />
-      <Button mode="contained" onPress={() => handleOnSubmit()}>
-        Create
-      </Button>
+      <View style={styles.buttonGroup}>
+        {initialValue ? (
+          <Button mode="contained" buttonColor="red" onPress={() => onDelete()}>
+            Delete
+          </Button>
+        ) : (
+          <></>
+        )}
+        <Button mode="contained" onPress={() => handleOnSubmit()}>
+          {initialValue ? "Confirm" : "Create"}
+        </Button>
+      </View>
     </View>
   );
 };
@@ -51,6 +59,10 @@ const BoardForm = ({ onSubmit, initialValue }: Props) => {
 const styles = StyleSheet.create({
   textInput: {
     marginBottom: 10,
+  },
+  buttonGroup: {
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
 });
 

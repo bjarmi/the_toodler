@@ -40,7 +40,7 @@ export const store: EnhancedStore = configureStore({
  *
  * @author Alexander Robertson -> contact-sasha@proton.me
  */
-export const dispatchAction = bindActionCreators(
+export const dispatchActions = bindActionCreators(
   {
     ...boardActions,
     ...listActions,

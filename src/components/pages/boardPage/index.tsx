@@ -19,7 +19,9 @@ const BoardPage = ({ route }: BoardScreenProps) => {
         <BoardOverview board={board} />
         <EntityList<IList>
           entities={getListsByBoard(board)}
-          entityComponent={ListCard}
+          renderCallback={(list: IList) => (
+            <ListCard key={list.id} list={list} />
+          )}
         />
       </ScrollView>
     </SafeAreaView>

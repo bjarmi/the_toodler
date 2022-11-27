@@ -8,33 +8,26 @@ import styles from "./styles";
 
 interface Props<T> {
   entities: T[];
-  entityComponent: (entity: IEntity) => ReactNode;
+  renderCallback: (entity: IEntity) => ReactNode;
 }
-
-const createList = (
-  entities: IEntity[],
-  component: (entity: IEntity) => ReactNode
-): ReactNode[] => {
-  let nodes: ReactNode[] = [];
-
-  entities.forEach((entity: IEntity) => {
-    nodes.push(<View key={entity.id}>{component(entity)}</View>);
-  });
-
-  return nodes;
-};
 
 const EntityList = <E extends IEntity>({
   entities,
-  entityComponent,
-}: Props<E>) =>
-  entities.length !== 0 ? (
-    <>{createList(entities, entityComponent)}</>
-  ) : (
+  renderCallback,
+}: Props<E>) => {
+  if (entities.length !== 0)
+    return (
+      <>
+        {entities.map((entity: IEntity) => (
+          <View key={entity.id}>{renderCallback(entity)}</View>
+        ))}
+      </>
+    );
+  else
     <View style={styles.emptyView}>
       <FontAwesomeIcon size={96} icon={faFaceMeh} />
       <Title>No Results found</Title>
-    </View>
-  );
+    </View>;
+};
 
 export default EntityList;

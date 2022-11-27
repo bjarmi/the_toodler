@@ -10,6 +10,7 @@ import {
   IncorrectActionTypeError,
 } from "../exceptions";
 import { data } from "../dataStub";
+import produce from "immer";
 
 /**
  * This interface defines the Board department - a subset of the Redux store.
@@ -54,16 +55,20 @@ const boardSlice: Slice = createSlice({
      * @author Alexander Robertson -> contact-sasha@proton.me
      * @author Bjarmi Anes Eiðsson -> bjarmi19@ru.com
      */
-    addBoard: (
-      department: IBoardDepartment,
-      action: IDepartmentAction
-    ): void => {
-      // Validate action type.
-      if (action.type !== "addBoard")
-        throw new IncorrectActionTypeError("addBoard", action.type);
-      department.boards.push({ ...action.payload, id: department.nextId });
-      department.nextId += 1;
-    },
+    addBoard: produce(
+      (
+        department: IBoardDepartment,
+        action: IDepartmentAction
+      ): IBoardDepartment => {
+        // Validate action type.
+        console.log("asdflasdfasdfadsf");
+        if (action.type !== "boards/addBoard")
+          throw new IncorrectActionTypeError("addBoard", action.type);
+        department.boards.push({ ...action.payload, id: department.nextId });
+        department.nextId += 1;
+        return department;
+      }
+    ),
 
     /**
      * This function edits a board in the Board department of the Redux store.
@@ -75,23 +80,26 @@ const boardSlice: Slice = createSlice({
      * @author Alexander Robertson -> contact-sasha@proton.me
      * @author Bjarmi Anes Eiðsson -> bjarmi19@ru.com
      */
-    editBoard: (department: IBoardDepartment, action: IDepartmentAction) => {
-      // Validate action type.
-      if (action.type !== "editBoard")
-        throw new IncorrectActionTypeError("editBoard", action.type);
+    editBoard: produce(
+      (department: IBoardDepartment, action: IDepartmentAction) => {
+        // Validate action type.
+        if (action.type !== "boards/editBoard")
+          throw new IncorrectActionTypeError("editBoard", action.type);
 
-      // Change board if it exists.
-      let boardFound: boolean = false;
-      for (const idx in department.boards)
-        if (department.boards[idx].id === action.payload.id) {
-          boardFound = true;
-          department.boards[idx] = action.payload;
-          break;
-        }
+        // Change board if it exists.
+        let boardFound: boolean = false;
+        for (const idx in department.boards)
+          if (department.boards[idx].id === action.payload.id) {
+            boardFound = true;
+            department.boards[idx] = action.payload;
+            break;
+          }
 
-      // Throw an error if the board was not found.
-      if (!boardFound) throw new BoardDoesNotExistError(action.payload.id);
-    },
+        // Throw an error if the board was not found.
+        if (!boardFound) throw new BoardDoesNotExistError(action.payload.id);
+        return department;
+      }
+    ),
 
     /**
      * This function removes a board from the Board department of the Redux store.
@@ -101,9 +109,9 @@ const boardSlice: Slice = createSlice({
      * @throws BoardDoesNotExistError If the Board provided for removal does not exist within the department.
      * @author Alexander Robertson -> contact-sasha@proton.me
      */
-    removeBoard: (department, action) => {
+    removeBoard: produce((department, action) => {
       // Validate action type.
-      if (action.type !== "removeBoard")
+      if (action.type !== "boards/removeBoard")
         throw new IncorrectActionTypeError("removeBoard", action.type);
 
       // Check if board exists.
@@ -120,7 +128,8 @@ const boardSlice: Slice = createSlice({
           (board: IBoard) => board.id !== action.payload.id
         );
       else throw new BoardDoesNotExistError(action.payload.id);
-    },
+      return department;
+    }),
   },
 });
 

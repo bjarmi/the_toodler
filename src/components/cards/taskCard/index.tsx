@@ -6,7 +6,11 @@ import { View } from "react-native";
 import { RadioButton } from "react-native-paper";
 import { useState } from "react";
 
-const TaskCard = (task: ITask) => {
+interface Props {
+  task: ITask;
+}
+
+const TaskCard = ({ task }: Props) => {
   const [isChecked, setIsChecked] = useState(task.isFinished);
 
   const list: IList = data.lists.filter((list) => list.id === task.listId)[0];

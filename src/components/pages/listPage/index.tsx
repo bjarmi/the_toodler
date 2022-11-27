@@ -17,7 +17,9 @@ const ListPage = ({ route }: ListScreenProps) => {
       <ScrollView>
         <EntityList<ITask>
           entities={getTasksByList(list)}
-          entityComponent={TaskCard}
+          renderCallback={(task: ITask) => (
+            <TaskCard key={task.id} task={task} />
+          )}
         />
       </ScrollView>
     </SafeAreaView>
