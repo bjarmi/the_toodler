@@ -2,11 +2,12 @@ import { useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { Button, TextInput } from "react-native-paper";
 import { IBoardForm } from "../../../common/interfaces";
+import IconSelector from "../../iconSelector";
 
 const emptyForm: IBoardForm = {
   name: "",
   description: "",
-  thumbnail: "",
+  thumbnailPhoto: "",
 };
 
 interface Props {
@@ -28,14 +29,20 @@ const BoardForm = ({ onSubmit, onDelete, initialValue }: Props) => {
 
   return (
     <View>
+      <View style={styles.input}>
+        <IconSelector
+          selectedIcon={form.thumbnailPhoto}
+          onChnage={(icon: string) => inputHandler("thumbnailPhoto", icon)}
+        />
+      </View>
       <TextInput
-        style={styles.textInput}
+        style={styles.input}
         label="Board Name"
         value={form.name}
         onChangeText={(value: string) => inputHandler("name", value)}
       />
       <TextInput
-        style={styles.textInput}
+        style={styles.input}
         label="Description"
         value={form.description}
         onChangeText={(value: string) => inputHandler("description", value)}
@@ -57,7 +64,7 @@ const BoardForm = ({ onSubmit, onDelete, initialValue }: Props) => {
 };
 
 const styles = StyleSheet.create({
-  textInput: {
+  input: {
     marginBottom: 10,
   },
   buttonGroup: {

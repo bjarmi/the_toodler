@@ -24,7 +24,7 @@ export interface IEntity {
  * @author Alexander Robertson -> contact-sasha@proton.me
  */
 export interface IBoard extends IEntity {
-  thumbnail?: string;
+  thumbnailPhoto?: string;
   description?: string;
 }
 
@@ -76,7 +76,7 @@ export interface IEntityForm {
  * @author Bjarmi Anes Eiðsson -> bjarmi19@ru.com
  */
 export interface IBoardForm extends IEntityForm {
-  thumbnail?: string;
+  thumbnailPhoto?: string;
   description?: string;
 }
 

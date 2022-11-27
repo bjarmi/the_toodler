@@ -4,7 +4,7 @@ import { View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { HomeScreenProps } from "../../../common/type";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faPoo } from "@fortawesome/free-solid-svg-icons";
+import icons from "../../../common/icons";
 import styles from "./styles";
 import CustomModal from "../../modal";
 import { useState } from "react";
@@ -38,7 +38,7 @@ const BoardCard = ({ board }: Props) => {
         >
           <View style={styles.cardContent}>
             <View style={styles.imageContainer}>
-              <FontAwesomeIcon size={48} icon={faPoo} />
+              <FontAwesomeIcon size={48} icon={icons[board.thumbnailPhoto]} />
             </View>
             <View style={styles.aboutContainer}>
               <Title>{board.name}</Title>

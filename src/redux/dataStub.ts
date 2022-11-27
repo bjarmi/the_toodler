@@ -3,24 +3,21 @@ export const data = {
     {
       id: 1,
       name: "Trip to the Netherlands!",
-      thumbnailPhoto:
-        "https://images.prismic.io/indiecampers-demo/9f34856d-05da-4afb-832f-d3a36de83b7f_Hero---Kinderdijk.jpg",
+      thumbnailPhoto: "poo",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mauris leo, sodales eget porta eget, ornare et nulla. Vivamus ultricies.",
     },
     {
       id: 2,
       name: "Boring stuff",
-      thumbnailPhoto:
-        "https://hbr.org/resources/images/article_assets/2019/06/Jun19_05_1040477378.jpg",
+      thumbnailPhoto: "heart",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mauris leo, sodales eget porta eget, ornare et nulla. Vivamus ultricies.",
     },
     {
       id: 3,
       name: "Bucket list",
-      thumbnailPhoto:
-        "https://images-na.ssl-images-amazon.com/images/I/61fq9A8jEGL._SL1500_.jpg",
+      thumbnailPhoto: "cartShopping",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mauris leo, sodales eget porta eget, ornare et nulla. Vivamus ultricies.",
     },
