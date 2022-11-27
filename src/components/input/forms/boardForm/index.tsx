@@ -1,23 +1,26 @@
 import { useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { Button, TextInput } from "react-native-paper";
-import { IBoardForm } from "../../../common/interfaces";
+import { IBoard, IBoardForm } from "../../../../common/interfaces";
 import IconSelector from "../../iconSelector";
 
-const emptyForm: IBoardForm = {
-  name: "",
-  description: "",
-  thumbnailPhoto: "",
-};
+const initialFormState = (board?: IBoard): IBoardForm =>
+  board
+    ? board
+    : {
+        name: "",
+        description: "",
+        thumbnailPhoto: "",
+      };
 
 interface Props {
   onSubmit: (board: IBoardForm) => void;
   onDelete?: () => void;
-  initialValue?: IBoardForm;
+  board?: IBoard;
 }
 
-const BoardForm = ({ onSubmit, onDelete, initialValue }: Props) => {
-  const [form, setForm] = useState(initialValue ? initialValue : emptyForm);
+const BoardForm = ({ onSubmit, onDelete, board }: Props) => {
+  const [form, setForm] = useState(initialFormState(board));
 
   const inputHandler = (name: string, value: string) =>
     setForm({
@@ -48,7 +51,7 @@ const BoardForm = ({ onSubmit, onDelete, initialValue }: Props) => {
         onChangeText={(value: string) => inputHandler("description", value)}
       />
       <View style={styles.buttonGroup}>
-        {initialValue ? (
+        {board ? (
           <Button mode="contained" buttonColor="red" onPress={() => onDelete()}>
             Delete
           </Button>
@@ -56,7 +59,7 @@ const BoardForm = ({ onSubmit, onDelete, initialValue }: Props) => {
           <></>
         )}
         <Button mode="contained" onPress={() => handleOnSubmit()}>
-          {initialValue ? "Confirm" : "Create"}
+          {board ? "Confirm" : "Create"}
         </Button>
       </View>
     </View>

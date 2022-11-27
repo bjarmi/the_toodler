@@ -61,7 +61,6 @@ const boardSlice: Slice = createSlice({
         action: IDepartmentAction
       ): IBoardDepartment => {
         // Validate action type.
-        console.log("asdflasdfasdfadsf");
         if (action.type !== "boards/addBoard")
           throw new IncorrectActionTypeError("addBoard", action.type);
         department.boards.push({ ...action.payload, id: department.nextId });

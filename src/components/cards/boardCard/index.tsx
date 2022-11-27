@@ -8,7 +8,7 @@ import icons from "../../../common/icons";
 import styles from "./styles";
 import CustomModal from "../../modal";
 import { useState } from "react";
-import BoardForm from "../../forms/boardForm";
+import BoardForm from "../../input/forms/boardForm";
 import { dispatchActions } from "../../../redux/store";
 
 interface Props {
@@ -51,7 +51,7 @@ const BoardCard = ({ board }: Props) => {
         <BoardForm
           onSubmit={(form: IBoardForm) => onEdit(form)}
           onDelete={() => onDelete()}
-          initialValue={board}
+          board={board}
         />
       </CustomModal>
     </>

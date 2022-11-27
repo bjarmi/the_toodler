@@ -24,10 +24,12 @@ const EntityList = <E extends IEntity>({
       </>
     );
   else
-    <View style={styles.emptyView}>
-      <FontAwesomeIcon size={96} icon={faFaceMeh} />
-      <Title>No Results found</Title>
-    </View>;
+    return (
+      <View style={styles.emptyView}>
+        <FontAwesomeIcon size={96} icon={faFaceMeh} />
+        <Title>No Results found</Title>
+      </View>
+    );
 };
 
 export default EntityList;

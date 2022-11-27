@@ -53,10 +53,10 @@ const listSlice: Slice = createSlice({
      */
     addList: (department: IListDepartment, action: IDepartmentAction): void => {
       // Validate action type.
-      if (action.type === "addList") {
+      if (action.type === "lists/addList") {
         department.lists.push({ ...action.payload, id: department.nextId });
         department.nextId += 1;
-      } else throw new IncorrectActionTypeError("addBoard", action.type);
+      } else throw new IncorrectActionTypeError("lists/addList", action.type);
     },
 
     /**
@@ -74,8 +74,8 @@ const listSlice: Slice = createSlice({
       action: IDepartmentAction
     ): void => {
       // Validate action type.
-      if (action.type !== "editList")
-        throw new IncorrectActionTypeError("editList", action.type);
+      if (action.type !== "lists/editList")
+        throw new IncorrectActionTypeError("lists/editList", action.type);
 
       // Change list if it exists.
       let listFound: boolean = false;
@@ -105,8 +105,8 @@ const listSlice: Slice = createSlice({
       action: IDepartmentAction
     ): void => {
       // Validate action type.
-      if (action.type !== "removeList")
-        throw new IncorrectActionTypeError("removeList", action.type);
+      if (action.type !== "lists/removeList")
+        throw new IncorrectActionTypeError("lists/removeList", action.type);
 
       // Check if list exists.
       let listFound: boolean = false;

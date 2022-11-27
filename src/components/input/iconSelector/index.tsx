@@ -1,8 +1,8 @@
-import { ScrollView, StyleSheet } from "react-native";
-import icons from "../../common/icons";
+import { ScrollView } from "react-native";
+import icons from "../../../common/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { TouchableRipple } from "react-native-paper";
-import { useState } from "react";
+import styles from "./styles";
 
 interface Props {
   selectedIcon: string;
@@ -10,15 +10,19 @@ interface Props {
 }
 
 const IconSelector = ({ selectedIcon, onChnage }: Props) => {
-  const [offset, setOffset] = useState(0);
   const iconSize: number = 65;
+  let offset = 0;
 
-  const Icon = ({ iconName, idx }) => {
-    let backgroundColor = "";
-    if (iconName === selectedIcon) {
-      setOffset(iconSize * idx);
-      backgroundColor = "rgba(54, 249, 73, .5)";
-    } else backgroundColor = "rgba(90, 90, 90, .3)";
+  // Set Offset
+  for (let idx = 0; idx < Object.keys(icons).length; idx++)
+    if (Object.keys(icons)[idx] === selectedIcon)
+      offset = idx * iconSize - 2 * iconSize;
+
+  const Icon = ({ iconName }) => {
+    const backgroundColor =
+      iconName === selectedIcon
+        ? "rgba(54, 249, 73, .5)"
+        : "rgba(90, 90, 90, .3)";
 
     return (
       <TouchableRipple
@@ -33,20 +37,10 @@ const IconSelector = ({ selectedIcon, onChnage }: Props) => {
   return (
     <ScrollView horizontal={true} contentOffset={{ x: offset, y: 0 }}>
       {Object.keys(icons).map((key: string, idx: number) => (
-        <Icon key={idx} iconName={key} idx={idx} />
+        <Icon key={idx} iconName={key} />
       ))}
     </ScrollView>
   );
 };
-
-const styles = StyleSheet.create({
-  iconContainer: {
-    marginHorizontal: 5,
-    padding: 10,
-    borderRadius: 50,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});
 
 export default IconSelector;
