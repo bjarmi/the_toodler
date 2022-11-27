@@ -1,6 +1,6 @@
 import { Card, Title, Paragraph, TouchableRipple } from "react-native-paper";
 import { IBoard, IBoardForm } from "../../../common/interfaces";
-import { TouchableOpacity, View } from "react-native";
+import { View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { HomeScreenProps } from "../../../common/type";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
