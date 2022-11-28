@@ -17,11 +17,11 @@ npm start
 ```
 
 ## Innteractions
-###Create
+### Create
 The green plus button at the bottom right button of each page is used to create and entity (board, list, task).
-
+### Edit/Delete
 A long press on an entity card is needed to open a modal that contains a form to edit the said entity or delete it.
-
+### View
 By pressing on a board or list card, the application will move you to a new screen containing more information about the entity.
 
 ## Device Support
