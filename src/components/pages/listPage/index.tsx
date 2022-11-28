@@ -9,6 +9,7 @@ import PageLayout from "../pageLayout";
 import { useState } from "react";
 import TaskForm from "../../input/forms/taskForm";
 
+
 const ListPage = ({ route }: ListScreenProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const list: IList = route.params.list;
