@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { View } from "react-native";
+import { ScrollView, View } from "react-native";
 import { Button, TextInput } from "react-native-paper";
-import { ITask, ITaskForm } from "../../../../common/interfaces";
+import { useAppSelector } from "../../../../common/hooks";
+import { ISubTask, ITask, ITaskForm } from "../../../../common/interfaces";
 import styles from "./styles";
+import SubTasksForm from "./subTasksForm";
 
-const initialFormState = (task?: ITask): ITaskForm =>
+const initialTaskFormState = (task?: ITask): ITaskForm =>
   task
     ? task
     : {
@@ -21,29 +23,53 @@ interface Props {
 }
 
 const TaskForm = ({ onSubmit, onDelete, task }: Props) => {
-  const [form, setForm] = useState(initialFormState(task));
+  const { subTasks } = useAppSelector((store) => store.subTasks);
+  const [taskForm, setTaskForm] = useState(initialTaskFormState(task));
+  const [subTaskForms, setSubTaskForms] = useState(
+    subTasks.filter((subTask: ISubTask) => subTask.taskId === task?.id)
+  );
 
-  const inputHandler = (name: string, value: string) =>
-    setForm({
-      ...form,
+  const taskInputHandler = (name: string, value: string) =>
+    setTaskForm({
+      ...taskForm,
       [name]: value,
     });
 
-  const handleOnSubmit = () => onSubmit(form);
+  const subTaskInputHandler = (idx: number, name: string) => {
+    let forms = [...subTaskForms];
+    let taskForm = { ...subTaskForms[idx] };
+    taskForm.name = name;
+    forms[idx] = taskForm;
+    setSubTaskForms(forms);
+  };
+
+  const addSubTask = () => {
+    subTaskForms.push({ name: "", isFinished: false });
+  };
+
+  const removeSubTask = (idx: number) =>
+    setSubTaskForms(subTaskForms.splice(idx, 1));
+
+  const handleOnSubmit = () => onSubmit(taskForm);
 
   return (
     <View>
       <TextInput
         style={styles.input}
         label="Board Name"
-        value={form.name}
-        onChangeText={(value: string) => inputHandler("name", value)}
+        value={taskForm.name}
+        onChangeText={(value: string) => taskInputHandler("name", value)}
       />
       <TextInput
         style={styles.input}
         label="Board Name"
-        value={form.description}
-        onChangeText={(value: string) => inputHandler("description", value)}
+        value={taskForm.description}
+        onChangeText={(value: string) => taskInputHandler("description", value)}
+      />
+      <SubTasksForm
+        subTasks={subTasks}
+        onChange={subTaskInputHandler}
+        onRemove={removeSubTask}
       />
       <View style={styles.buttonGroup}>
         {task ? (

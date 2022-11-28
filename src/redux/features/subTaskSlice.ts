@@ -138,5 +138,5 @@ const subTaskSlice: Slice = createSlice({
   },
 });
 
-export const { addTask, editTask, removeTask } = subTaskSlice.actions;
+export const { addSubTask, editSubTask, removeSubTask } = subTaskSlice.actions;
 export default subTaskSlice.reducer;

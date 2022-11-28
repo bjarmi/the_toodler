@@ -1,4 +1,4 @@
-import { List } from "react-native-paper";
+import { List, Paragraph } from "react-native-paper";
 import { IList, ISubTask, ITask, ITaskForm } from "../../../common/interfaces";
 import styles from "./styles";
 import { RadioButton } from "react-native-paper";
@@ -6,6 +6,7 @@ import { dispatchActions, useAppSelector } from "../../../common/hooks";
 import CustomModal from "../../modal";
 import { useState } from "react";
 import TaskForm from "../../input/forms/taskForm";
+import { TouchableWithoutFeedback, View } from "react-native";
 
 interface Props {
   task: ITask;
@@ -37,6 +38,7 @@ const TaskCard = ({ task }: Props) => {
   const { lists } = useAppSelector((store) => store.lists);
   const { subTasks } = useAppSelector((store) => store.subTasks);
   const [isEditing, setIsEditing] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const tasksSubTasks = (): ISubTask[] =>
     subTasks.filter((subTask: ISubTask) => subTask.taskId === task.id);
@@ -56,22 +58,24 @@ const TaskCard = ({ task }: Props) => {
       <List.Accordion
         title={task.name}
         onLongPress={() => setIsEditing(true)}
-        right={() => (
-          <RadioButton
-            value="first"
-            status={task.isFinished ? "checked" : "unchecked"}
-            onPress={() => onEdit({ ...task, isFinished: !task.isFinished })}
-          />
-        )}
         style={{
           ...styles.card,
           backgroundColor: lists.find((list: IList) => list.id === task.listId)
             .color,
         }}
       >
-        <List.Subheader>{task.description}</List.Subheader>
+        <List.Subheader>
+          <View style={styles.subHeader}>
+            <Paragraph>{task.description}</Paragraph>
+            <RadioButton
+              value="first"
+              status={task.isFinished ? "checked" : "unchecked"}
+              onPress={() => onEdit({ ...task, isFinished: !task.isFinished })}
+            />
+          </View>
+        </List.Subheader>
         {tasksSubTasks().map((subTask: ISubTask) => (
-          <SubTask subTask={subTask} />
+          <SubTask key={subTask.id} subTask={subTask} />
         ))}
       </List.Accordion>
       <CustomModal visible={isEditing} hideModal={() => setIsEditing(false)}>
