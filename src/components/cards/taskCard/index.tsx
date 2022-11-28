@@ -1,31 +1,91 @@
-import { Card, Title } from "react-native-paper";
-import { IList, ITask } from "../../../common/interfaces";
+import { List, Paragraph } from "react-native-paper";
+import { IList, ISubTask, ITask, ITaskForm } from "../../../common/interfaces";
 import styles from "./styles";
-import { data } from "../../../redux/dataStub";
-import { View } from "react-native";
 import { RadioButton } from "react-native-paper";
+import { dispatchActions, useAppSelector } from "../../../common/hooks";
+import CustomModal from "../../modal";
 import { useState } from "react";
+import TaskForm from "../../input/forms/taskForm";
+import { TouchableWithoutFeedback, View } from "react-native";
 
-const TaskCard = (task: ITask) => {
-  const [isChecked, setIsChecked] = useState(task.isFinished);
+interface Props {
+  task: ITask;
+}
 
-  const list: IList = data.lists.filter((list) => list.id === task.listId)[0];
+const SubTask = ({ subTask }) => {
+  const toggleFinished = () => {
+    dispatchActions.editSubTask({
+      ...subTask,
+      isFinished: !subTask.isFinished,
+    });
+  };
 
   return (
-    <Card
-      key={task.id}
-      elevation={2}
-      style={{ ...styles.card, backgroundColor: list.color }}
-    >
-      <View style={styles.content}>
-        <Title>{list.name}</Title>
+    <List.Item
+      key={subTask.id}
+      title={subTask.name}
+      right={() => (
         <RadioButton
           value="first"
-          status={isChecked ? "checked" : "unchecked"}
-          onPress={() => setIsChecked(!isChecked)}
+          status={subTask.isFinished ? "checked" : "unchecked"}
+          onPress={() => toggleFinished()}
         />
-      </View>
-    </Card>
+      )}
+    />
+  );
+};
+const TaskCard = ({ task }: Props) => {
+  const { lists } = useAppSelector((store) => store.lists);
+  const { subTasks } = useAppSelector((store) => store.subTasks);
+  const [isEditing, setIsEditing] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const tasksSubTasks = (): ISubTask[] =>
+    subTasks.filter((subTask: ISubTask) => subTask.taskId === task.id);
+
+  const onEdit = (form: ITaskForm): void => {
+    setIsEditing(false);
+    dispatchActions.editTask({ id: task.id, ...form });
+  };
+
+  const onDelete = (): void => {
+    setIsEditing(false);
+    dispatchActions.removeTask(task);
+  };
+
+  return (
+    <>
+      <List.Accordion
+        title={task.name}
+        onLongPress={() => setIsEditing(true)}
+        style={{
+          ...styles.card,
+          backgroundColor: lists.find((list: IList) => list.id === task.listId)
+            .color,
+        }}
+      >
+        <List.Subheader>
+          <View style={styles.subHeader}>
+            <Paragraph>{task.description}</Paragraph>
+            <RadioButton
+              value="first"
+              status={task.isFinished ? "checked" : "unchecked"}
+              onPress={() => onEdit({ ...task, isFinished: !task.isFinished })}
+            />
+          </View>
+        </List.Subheader>
+        {tasksSubTasks().map((subTask: ISubTask) => (
+          <SubTask key={subTask.id} subTask={subTask} />
+        ))}
+      </List.Accordion>
+      <CustomModal visible={isEditing} hideModal={() => setIsEditing(false)}>
+        <TaskForm
+          onSubmit={(form: ITaskForm) => onEdit(form)}
+          onDelete={() => onDelete()}
+          task={task}
+        />
+      </CustomModal>
+    </>
   );
 };
 

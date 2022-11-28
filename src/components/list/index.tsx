@@ -7,34 +7,29 @@ import { Title } from "react-native-paper";
 import styles from "./styles";
 
 interface Props<T> {
-  entities: Set<T>;
-  entityComponent: (entity: IEntity) => ReactNode;
+  entities: T[];
+  renderCallback: (entity: IEntity) => ReactNode;
 }
-
-const createList = (
-  entities: Set<IEntity>,
-  component: (entity: IEntity) => ReactNode
-): ReactNode[] => {
-  let nodes: ReactNode[] = [];
-
-  entities.forEach((entity: IEntity) => {
-    nodes.push(component(entity));
-  });
-
-  return nodes;
-};
 
 const EntityList = <E extends IEntity>({
   entities,
-  entityComponent,
-}: Props<E>) =>
-  entities.size !== 0 ? (
-    <>{createList(entities, entityComponent)}</>
-  ) : (
-    <View style={styles.emptyView}>
-      <FontAwesomeIcon size={96} icon={faFaceMeh} />
-      <Title>No Results found</Title>
-    </View>
-  );
+  renderCallback,
+}: Props<E>) => {
+  if (entities.length !== 0)
+    return (
+      <>
+        {entities.map((entity: IEntity) => (
+          <View key={entity.id}>{renderCallback(entity)}</View>
+        ))}
+      </>
+    );
+  else
+    return (
+      <View style={styles.emptyView}>
+        <FontAwesomeIcon size={96} icon={faFaceMeh} />
+        <Title>No Results found</Title>
+      </View>
+    );
+};
 
 export default EntityList;

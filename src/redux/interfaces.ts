@@ -1,6 +1,6 @@
 /*
-* This module contains interfaces for Redux.
-*/
+ * This module contains interfaces for Redux.
+ */
 
 /**
  * This interface represents actions within the Redux store.
@@ -11,6 +11,6 @@
  * @author Alexander Robertson -> contact-sasha@proton.me
  */
 export interface IDepartmentAction {
-  readonly payload: any,
-  readonly type: string
+  readonly payload: any;
+  readonly type: string;
 }

@@ -1,12 +1,12 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-  card: {
-    marginTop: 12,
-    marginHorizontal: 12,
-  },
-  content: {
+  iconContainer: {
+    marginHorizontal: 5,
     padding: 10,
+    borderRadius: 50,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 

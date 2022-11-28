@@ -8,13 +8,11 @@
  * @interface IEntity
  * @member {number} id The ID of the entity.
  * @member {string} name The name of the entity.
- * @member {string} description The description of the entity -> optional.
  * @author Alexander Robertson -> contact-sasha@proton.me
  */
 export interface IEntity {
   id: number;
   name: string;
-  description?: string;
 }
 
 /**
@@ -22,10 +20,12 @@ export interface IEntity {
  *
  * @interface IBoard
  * @member {string} thumbnail A stringified URL to a thumbnail image -> optional.
+ * @member {string} description The description of the entity -> optional.
  * @author Alexander Robertson -> contact-sasha@proton.me
  */
 export interface IBoard extends IEntity {
-  thumbnail?: string;
+  thumbnailPhoto?: string;
+  description?: string;
 }
 
 /**
@@ -53,5 +53,81 @@ export interface IList extends IEntity {
 export interface ITask extends IEntity {
   listId: number;
   description: string;
+  isFinished: boolean;
+}
+/**
+ * This interface represents Sub Tasks within the application.
+ *
+ * @interface ISubTask
+ * @member {number} taskId The ID of the Task this sub task resides in.
+ * @member {boolean} finished A boolean value representing whether this sub task has been finished.
+ * @author Bjarmi Anes Eiðsson -> bjarmi19@ru.com
+ */
+export interface ISubTask extends IEntity {
+  taskId: number;
+  isFinished: boolean;
+}
+/**
+ * This interface is an abstract interface for all entity forms within the
+ * application.
+ *
+ * @interface IEntityForm
+ * @member {string} name The name of the entity.
+ * @author Bjarmi Anes Eiðsson -> bjarmi19@ru.com
+ */
+export interface IEntityForm {
+  name: string;
+}
+
+/**
+ * This interface represents BoardForm within the application.
+ *
+ * @interface IBoardForm
+ * @member {string} thumbnail A stringified URL to a thumbnail image -> optional.
+ * @member {string} description The description of the entity -> optional.
+ * @author Bjarmi Anes Eiðsson -> bjarmi19@ru.com
+ */
+export interface IBoardForm extends IEntityForm {
+  thumbnailPhoto?: string;
+  description?: string;
+}
+
+/**
+ * This interface represents ListsFrom within the application.
+ *
+ * @interface IListForm
+ * @member {number} boardID The ID of the board this list resides in.
+ * @member {string} colour A hexadecimal representation of the colour for this list.
+ * @author Bjarmi Anes Eiðsson -> bjarmi19@ru.com
+ */
+export interface IListForm extends IEntityForm {
+  boardId: number;
+  color: string;
+}
+
+/**
+ * This interface represents TasksForm within the application.
+ *
+ * @interface ITaskForm
+ * @member {number} listID The ID of the list this task resides in.
+ * @member {string} description A required description of the task.
+ * @member {boolean} finished A boolean value representing whether this task has been finished.
+ * @author Bjarmi Anes Eiðsson -> bjarmi19@ru.com
+ */
+export interface ITaskForm extends IEntityForm {
+  listId: number;
+  description: string;
+  isFinished: boolean;
+}
+/**
+ * This interface represents SubTasksForm within the application.
+ *
+ * @interface ISubTaskForm
+ * @member {number} taskId The ID of the Task this sub task resides in.
+ * @member {boolean} finished A boolean value representing whether this sub task has been finished.
+ * @author Bjarmi Anes Eiðsson -> bjarmi19@ru.com
+ */
+export interface ISubTaskForm extends IEntityForm {
+  taskId: number;
   isFinished: boolean;
 }

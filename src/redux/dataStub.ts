@@ -3,64 +3,21 @@ export const data = {
     {
       id: 1,
       name: "Trip to the Netherlands!",
-      thumbnailPhoto:
-        "https://images.prismic.io/indiecampers-demo/9f34856d-05da-4afb-832f-d3a36de83b7f_Hero---Kinderdijk.jpg",
+      thumbnailPhoto: "poo",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mauris leo, sodales eget porta eget, ornare et nulla. Vivamus ultricies.",
     },
     {
       id: 2,
       name: "Boring stuff",
-      thumbnailPhoto:
-        "https://hbr.org/resources/images/article_assets/2019/06/Jun19_05_1040477378.jpg",
+      thumbnailPhoto: "heart",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mauris leo, sodales eget porta eget, ornare et nulla. Vivamus ultricies.",
     },
     {
       id: 3,
       name: "Bucket list",
-      thumbnailPhoto:
-        "https://images-na.ssl-images-amazon.com/images/I/61fq9A8jEGL._SL1500_.jpg",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mauris leo, sodales eget porta eget, ornare et nulla. Vivamus ultricies.",
-    },
-    {
-      id: 4,
-      name: "Bucket list",
-      thumbnailPhoto:
-        "https://images-na.ssl-images-amazon.com/images/I/61fq9A8jEGL._SL1500_.jpg",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mauris leo, sodales eget porta eget, ornare et nulla. Vivamus ultricies.",
-    },
-    {
-      id: 5,
-      name: "Bucket list",
-      thumbnailPhoto:
-        "https://images-na.ssl-images-amazon.com/images/I/61fq9A8jEGL._SL1500_.jpg",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mauris leo, sodales eget porta eget, ornare et nulla. Vivamus ultricies.",
-    },
-    {
-      id: 6,
-      name: "Bucket list",
-      thumbnailPhoto:
-        "https://images-na.ssl-images-amazon.com/images/I/61fq9A8jEGL._SL1500_.jpg",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mauris leo, sodales eget porta eget, ornare et nulla. Vivamus ultricies.",
-    },
-    {
-      id: 7,
-      name: "Bucket list",
-      thumbnailPhoto:
-        "https://images-na.ssl-images-amazon.com/images/I/61fq9A8jEGL._SL1500_.jpg",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mauris leo, sodales eget porta eget, ornare et nulla. Vivamus ultricies.",
-    },
-    {
-      id: 8,
-      name: "Bucket list",
-      thumbnailPhoto:
-        "https://images-na.ssl-images-amazon.com/images/I/61fq9A8jEGL._SL1500_.jpg",
+      thumbnailPhoto: "cartShopping",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mauris leo, sodales eget porta eget, ornare et nulla. Vivamus ultricies.",
     },
@@ -69,50 +26,76 @@ export const data = {
     {
       id: 1,
       name: "Must see!",
-      color: "#ffffff",
+      color: "#ffbc42",
       boardId: 1,
     },
     {
       id: 2,
       name: "One-day trips!",
-      color: "#00ff00",
+      color: "#d81159",
       boardId: 1,
     },
     {
       id: 3,
       name: "Backlog",
-      color: "#dddddd",
+      color: "#8f2d56",
       boardId: 2,
     },
     {
       id: 4,
       name: "In progress",
-      color: "#cccccc",
+      color: "#218380",
       boardId: 2,
     },
     {
       id: 5,
       name: "Done",
-      color: "#555555",
+      color: "#73d2de",
       boardId: 2,
     },
     {
       id: 6,
       name: "Top 10",
-      color: "#ff0000",
+      color: "#373f51",
       boardId: 3,
     },
     {
       id: 7,
       name: "Top 10-20",
-      color: "#0000ff",
+      color: "#008dd5",
       boardId: 3,
     },
     {
       id: 8,
       name: "Last",
-      color: "#ff00ff",
+      color: "#dfbbb1",
       boardId: 3,
+    },
+  ],
+  subTasks: [
+    {
+      id: 1,
+      name: "Appreciate the sunflower fields",
+      isFinished: false,
+      taskId: 1,
+    },
+    {
+      id: 2,
+      name: "Throw paint on the sunflower fields",
+      isFinished: false,
+      taskId: 1,
+    },
+    {
+      id: 3,
+      name: "Glue hand to the wall",
+      isFinished: false,
+      taskId: 1,
+    },
+    {
+      id: 4,
+      name: "Say snowflake shit",
+      isFinished: false,
+      taskId: 1,
     },
   ],
   tasks: [

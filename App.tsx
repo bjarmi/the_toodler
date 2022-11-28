@@ -1,4 +1,3 @@
-import { enableMapSet } from "immer";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import BoardPage from "./src/components/pages/boardPage";
@@ -8,9 +7,6 @@ import { PageParams } from "./src/common/type";
 import { store } from "./src/redux/store";
 import { Provider } from "react-redux";
 
-// Allow Redux store to use immutable objects.
-// https://immerjs.github.io/immer/complex-objects/
-enableMapSet();
 const Stack = createNativeStackNavigator<PageParams>();
 
 export default function App() {

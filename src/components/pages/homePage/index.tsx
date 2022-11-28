@@ -1,18 +1,37 @@
-import { SafeAreaView, ScrollView } from "react-native";
-import { useAppSelector } from "../../../common/hooks";
-import { IBoard } from "../../../common/interfaces";
+import { useState } from "react";
+import { ScrollView } from "react-native";
+import { useAppSelector, dispatchActions } from "../../../common/hooks";
+import { IBoard, IBoardForm } from "../../../common/interfaces";
 import BoardCard from "../../cards/boardCard";
+import BoardForm from "../../input/forms/boardForm";
 import EntityList from "../../list";
+import CustomModal from "../../modal";
+import PageLayout from "../pageLayout";
 
 const HomePage = () => {
   const { boards } = useAppSelector((store) => store.boards);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const onCreate = (board: IBoardForm) => {
+    setIsModalOpen(false);
+    dispatchActions.addBoard(board);
+  };
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <PageLayout action={() => setIsModalOpen(true)}>
+      <CustomModal
+        visible={isModalOpen}
+        hideModal={() => setIsModalOpen(false)}
+      >
+        <BoardForm onSubmit={(form: IBoardForm) => onCreate(form)} />
+      </CustomModal>
       <ScrollView>
-        <EntityList<IBoard> entities={boards} entityComponent={BoardCard} />
+        <EntityList<IBoard>
+          entities={boards}
+          renderCallback={(board: IBoard) => <BoardCard board={board} />}
+        />
       </ScrollView>
-    </SafeAreaView>
+    </PageLayout>
   );
 };
 
