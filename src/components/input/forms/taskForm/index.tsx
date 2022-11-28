@@ -1,27 +1,27 @@
 import { useState } from "react";
 import { View } from "react-native";
 import { Button, TextInput } from "react-native-paper";
-import { IList, IListForm } from "../../../../common/interfaces";
-import ColorSelector from "../../colorSelector";
+import { ITask, ITaskForm } from "../../../../common/interfaces";
 import styles from "./styles";
 
-const initialFormState = (list?: IList): IListForm =>
-  list
-    ? list
+const initialFormState = (task?: ITask): ITaskForm =>
+  task
+    ? task
     : {
         name: "",
-        color: "",
-        boardId: -1,
+        isFinished: false,
+        description: "",
+        listId: -1,
       };
 
 interface Props {
-  onSubmit: (board: IListForm) => void;
+  onSubmit: (task: ITaskForm) => void;
   onDelete?: () => void;
-  list?: IList;
+  task?: ITask;
 }
 
-const ListForm = ({ onSubmit, onDelete, list }: Props) => {
-  const [form, setForm] = useState(initialFormState(list));
+const TaskForm = ({ onSubmit, onDelete, task }: Props) => {
+  const [form, setForm] = useState(initialFormState(task));
 
   const inputHandler = (name: string, value: string) =>
     setForm({
@@ -33,20 +33,20 @@ const ListForm = ({ onSubmit, onDelete, list }: Props) => {
 
   return (
     <View>
-      <View style={styles.input}>
-        <ColorSelector
-          selectedColor={form.color}
-          onChnage={(color: string) => inputHandler("color", color)}
-        />
-      </View>
       <TextInput
         style={styles.input}
         label="Board Name"
         value={form.name}
         onChangeText={(value: string) => inputHandler("name", value)}
       />
+      <TextInput
+        style={styles.input}
+        label="Board Name"
+        value={form.description}
+        onChangeText={(value: string) => inputHandler("description", value)}
+      />
       <View style={styles.buttonGroup}>
-        {list ? (
+        {task ? (
           <Button mode="contained" buttonColor="red" onPress={() => onDelete()}>
             Delete
           </Button>
@@ -54,11 +54,11 @@ const ListForm = ({ onSubmit, onDelete, list }: Props) => {
           <></>
         )}
         <Button mode="contained" onPress={() => handleOnSubmit()}>
-          {list ? "Confirm" : "Create"}
+          {task ? "Confirm" : "Create"}
         </Button>
       </View>
     </View>
   );
 };
 
-export default ListForm;
+export default TaskForm;

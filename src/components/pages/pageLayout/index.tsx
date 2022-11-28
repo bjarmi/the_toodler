@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import { ReactNode } from "react";
 import { SafeAreaView } from "react-native";
 import { FAB } from "react-native-paper";
@@ -14,7 +13,6 @@ const PageLayout = ({ action, children }: Props) => {
     <SafeAreaView style={styles.container}>
       {children}
       <FAB style={styles.fab} icon="plus" onPress={action} />
-      <StatusBar style="auto" />
     </SafeAreaView>
   );
 };

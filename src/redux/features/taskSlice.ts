@@ -53,10 +53,10 @@ const taskSlice: Slice = createSlice({
      */
     addTask: (department: ITaskDepartment, action: IDepartmentAction): void => {
       // Validate action type.
-      if (action.type === "addTask") {
+      if (action.type === "tasks/addTask") {
         department.tasks.push({ ...action.payload, id: department.nextId });
         department.nextId += 1;
-      } else throw new IncorrectActionTypeError("addTask", action.type);
+      } else throw new IncorrectActionTypeError("tasks/addTask", action.type);
     },
 
     /**
@@ -74,8 +74,8 @@ const taskSlice: Slice = createSlice({
       action: IDepartmentAction
     ): void => {
       // Validate action type.
-      if (action.type !== "editTask")
-        throw new IncorrectActionTypeError("editTask", action.type);
+      if (action.type !== "tasks/editTask")
+        throw new IncorrectActionTypeError("tasks/editTask", action.type);
 
       // Change task if it exists.
       let taskFound: boolean = false;
@@ -105,8 +105,8 @@ const taskSlice: Slice = createSlice({
       action: IDepartmentAction
     ): void => {
       // Validate action type.
-      if (action.type !== "removeTask")
-        throw new IncorrectActionTypeError("removeTask", action.type);
+      if (action.type !== "tasks/removeTask")
+        throw new IncorrectActionTypeError("tasks/removeTask", action.type);
 
       // Check if task exists.
       let taskFound: boolean = false;

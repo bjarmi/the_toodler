@@ -1,19 +1,35 @@
-import { SafeAreaView, ScrollView } from "react-native";
-import { IList, ITask } from "../../../common/interfaces";
+import { ScrollView } from "react-native";
+import { IList, ITask, ITaskForm } from "../../../common/interfaces";
 import { ListScreenProps } from "../../../common/type";
 import TaskCard from "../../cards/taskCard";
 import EntityList from "../../list";
-import { useAppSelector } from "../../../common/hooks";
+import { dispatchActions, useAppSelector } from "../../../common/hooks";
+import CustomModal from "../../modal";
+import PageLayout from "../pageLayout";
+import { useState } from "react";
+import TaskForm from "../../input/forms/taskForm";
 
 const ListPage = ({ route }: ListScreenProps) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const list: IList = route.params.list;
   const { tasks } = useAppSelector((store) => store.tasks);
 
   const getTasksByList = (list: IList): ITask[] =>
     tasks.filter((task: ITask) => task.listId === list.id);
 
+  const onCreate = (task: ITaskForm) => {
+    setIsModalOpen(false);
+    dispatchActions.addTask({ ...task, listId: list.id });
+  };
+
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <PageLayout action={() => setIsModalOpen(true)}>
+      <CustomModal
+        visible={isModalOpen}
+        hideModal={() => setIsModalOpen(false)}
+      >
+        <TaskForm onSubmit={onCreate} />
+      </CustomModal>
       <ScrollView>
         <EntityList<ITask>
           entities={getTasksByList(list)}
@@ -22,7 +38,7 @@ const ListPage = ({ route }: ListScreenProps) => {
           )}
         />
       </ScrollView>
-    </SafeAreaView>
+    </PageLayout>
   );
 };
 
