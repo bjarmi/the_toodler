@@ -6,10 +6,23 @@ The Toodler is the first assignemnt in the course T-488-MAPP at RU and is design
 - Bjarmi Anes Eiðsson - bjarmi19@ru.is
 
 ## Usage
-To run the application all dependencies need to be installed with:
+Please install all dependencies before executing the application by running:
 ```
-  npm i
+npm i
 ```
+
+To execute the application run:
+```
+npm start
+```
+
+## Innteractions
+###Create
+The green plus button at the bottom right button of each page is used to create and entity (board, list, task).
+
+A long press on an entity card is needed to open a modal that contains a form to edit the said entity or delete it.
+
+By pressing on a board or list card, the application will move you to a new screen containing more information about the entity.
 
 ## Device Support
 The app is best viewed on Android devices but also works on IOS devices
