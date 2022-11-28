@@ -8,7 +8,6 @@
  * @author Alexander Robertson -> contact-sasha@proton.me
  */
 class EntityDoesNotExistError extends Error {
-
   /**
    * Construct an EntityDoesNotExistError
    *
@@ -17,10 +16,12 @@ class EntityDoesNotExistError extends Error {
    * @author Alexander Robertson -> contact-sasha@proton.me
    */
   constructor(entityName: string, id: number) {
-    entityName[0].toUpperCase()
-    const msg: string = `${entityName.charAt(0).toUpperCase() + entityName.slice(1)} with ID: '${id}' does not exist`
+    entityName[0].toUpperCase();
+    const msg: string = `${
+      entityName.charAt(0).toUpperCase() + entityName.slice(1)
+    } with ID: '${id}' does not exist`;
     super(msg);
-    Object.setPrototypeOf(this, EntityDoesNotExistError)
+    Object.setPrototypeOf(this, EntityDoesNotExistError);
   }
 }
 
@@ -30,7 +31,6 @@ class EntityDoesNotExistError extends Error {
  * @author Alexander Robertson -> contact-sasha@proton.me
  */
 export class BoardDoesNotExistError extends EntityDoesNotExistError {
-
   /**
    * Construct a BoardDoesNotExistError
    *
@@ -38,9 +38,9 @@ export class BoardDoesNotExistError extends EntityDoesNotExistError {
    * @author Alexander Robertson -> contact-sasha@proton.me
    */
   constructor(id: number) {
-    const entityName: string = "Board"
+    const entityName: string = "Board";
     super(entityName, id);
-    Object.setPrototypeOf(this, BoardDoesNotExistError.prototype)
+    Object.setPrototypeOf(this, BoardDoesNotExistError.prototype);
   }
 }
 
@@ -50,7 +50,6 @@ export class BoardDoesNotExistError extends EntityDoesNotExistError {
  * @author Alexander Robertson -> contact-sasha@proton.me
  */
 export class ListDoesNotExistError extends EntityDoesNotExistError {
-
   /**
    * Construct a ListDoesNotExistError
    *
@@ -58,9 +57,9 @@ export class ListDoesNotExistError extends EntityDoesNotExistError {
    * @author Alexander Robertson -> contact-sasha@proton.me
    */
   constructor(id: number) {
-    const entityName: string = "List"
+    const entityName: string = "List";
     super(entityName, id);
-    Object.setPrototypeOf(this, ListDoesNotExistError.prototype)
+    Object.setPrototypeOf(this, ListDoesNotExistError.prototype);
   }
 }
 
@@ -70,7 +69,6 @@ export class ListDoesNotExistError extends EntityDoesNotExistError {
  * @author Alexander Robertson -> contact-sasha@proton.me
  */
 export class TaskDoesNotExistError extends EntityDoesNotExistError {
-
   /**
    * Construct a TaskDoesNotExistError
    *
@@ -78,9 +76,27 @@ export class TaskDoesNotExistError extends EntityDoesNotExistError {
    * @author Alexander Robertson -> contact-sasha@proton.me
    */
   constructor(id: number) {
-    const entityName: string = "Task"
+    const entityName: string = "Task";
     super(entityName, id);
-    Object.setPrototypeOf(this, TaskDoesNotExistError.prototype)
+    Object.setPrototypeOf(this, TaskDoesNotExistError.prototype);
+  }
+}
+/**
+ * This class represents and error thrown when a SubTask does not exist during lookup.
+ * @extends EntityDoesNotExistError
+ * @author Bjarmi Anes Eiðsson -> bjarmi19@ru.com
+ */
+export class SubTaskDoesNotExistError extends EntityDoesNotExistError {
+  /**
+   * Construct a SubTaskDoesNotExistError
+   *
+   * @param {number} id ID of the sub task that was looked up.
+   * @author Alexander Robertson -> contact-sasha@proton.me
+   */
+  constructor(id: number) {
+    const entityName: string = "SubTask";
+    super(entityName, id);
+    Object.setPrototypeOf(this, SubTaskDoesNotExistError.prototype);
   }
 }
 
@@ -90,7 +106,6 @@ export class TaskDoesNotExistError extends EntityDoesNotExistError {
  * @author Alexander Robertson -> contact-sasha@proton.me
  */
 export class IncorrectActionTypeError extends Error {
-
   /**
    * Construct an IncorrectActionTypeError
    *
@@ -99,8 +114,8 @@ export class IncorrectActionTypeError extends Error {
    * @author Alexander Robertson -> contact-sasha@proton.me
    */
   constructor(expected: string, got: string) {
-    const msg: string = `Incorrect action type -> expected '${expected}', got '${got}'`
+    const msg: string = `Incorrect action type -> expected '${expected}', got '${got}'`;
     super(msg);
-    Object.setPrototypeOf(this, IncorrectActionTypeError)
+    Object.setPrototypeOf(this, IncorrectActionTypeError);
   }
 }

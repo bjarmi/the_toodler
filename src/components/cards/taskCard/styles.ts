@@ -4,6 +4,7 @@ const styles = StyleSheet.create({
   card: {
     marginTop: 12,
     marginHorizontal: 12,
+    borderRadius: 10,
   },
   touchable: {
     padding: 10,

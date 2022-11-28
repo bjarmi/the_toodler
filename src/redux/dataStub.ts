@@ -72,6 +72,32 @@ export const data = {
       boardId: 3,
     },
   ],
+  subTasks: [
+    {
+      id: 1,
+      name: "Appreciate the sunflower fields",
+      isFinished: false,
+      taskId: 1,
+    },
+    {
+      id: 2,
+      name: "Throw paint on the sunflower fields",
+      isFinished: false,
+      taskId: 1,
+    },
+    {
+      id: 3,
+      name: "Glue hand to the wall",
+      isFinished: false,
+      taskId: 1,
+    },
+    {
+      id: 4,
+      name: "Say snowflake shit",
+      isFinished: false,
+      taskId: 1,
+    },
+  ],
   tasks: [
     {
       id: 1,

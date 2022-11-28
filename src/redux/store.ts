@@ -15,6 +15,8 @@ import {
   listReducer,
   taskActions,
   taskReducer,
+  subTaskActions,
+  subTaskReducer,
 } from "./features";
 import Logger from "./middleware/logger";
 
@@ -30,6 +32,7 @@ export const store: EnhancedStore = configureStore({
     boards: boardReducer,
     lists: listReducer,
     tasks: taskReducer,
+    subTasks: subTaskReducer,
   }),
   // Register middleware with the store.
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(Logger),
@@ -45,6 +48,7 @@ export const dispatchActions = bindActionCreators(
     ...boardActions,
     ...listActions,
     ...taskActions,
+    ...subTaskActions,
   },
   store.dispatch
 );
