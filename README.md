@@ -7,7 +7,9 @@ The Toodler is the first assignemnt in the course T-488-MAPP at RU and is design
 
 ## Usage
 To run the application all dependencies need to be installed with:
+```
   npm i
+```
 
 ## Device Support
 The app is best viewed on Android devices but also works on IOS devices
